@@ -31,6 +31,9 @@ const store = observable({
   }),
   //
   welcome: "Please sign in",
+  get setWelcome() {
+    return store.isSignedIn ? "Welcome back" : "Please sign in";
+  },
   setMsg: action(function setMsg() {
     return (store.welcome = store.isSignedIn
       ? "Welcome back"

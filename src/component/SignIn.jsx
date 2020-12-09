@@ -3,6 +3,8 @@ import React, { useState } from "react";
 // import { observer } from "mobx-react-lite";
 import { action } from "mobx";
 
+// import history from "../utils/history";
+
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -43,7 +45,12 @@ const SignIn = ({ store }) => {
     const emails = Array.from(store.users, ({ email }) => email);
     if (!emails.includes(email)) {
       store.addUser({ email: email, name: pwd });
+      store.toggleSgn();
+      store.setMsg();
     }
+
+    store.setModalClose();
+    // history.replace("");
   };
 
   console.log("render form");
@@ -76,7 +83,7 @@ const SignIn = ({ store }) => {
                 fullWidth
                 name="email"
                 type="email"
-                autoComplete="email"
+                autoComplete="current-email"
                 //  autoFocus
                 required
                 variant="outlined"

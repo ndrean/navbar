@@ -1,5 +1,4 @@
 import React, { Suspense, lazy } from "react";
-// import { observer } from "mobx-react-lite";
 
 // import { StateProvider } from "../context/statectx";
 

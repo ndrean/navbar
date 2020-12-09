@@ -6,20 +6,16 @@ import { observer } from "mobx-react-lite";
 import "../App.css";
 import SimpleModal from "./SimpleModal";
 
-// import store from "../utils/store";
-
 const SgnButton = observer(({ store }) => {
   function handleClick() {
-    store.toggleSgn();
     store.setMsg();
-    // store.toggleForm();
-    store.toggleModal();
+    store.isSignedIn ? store.toggleSgn() : store.toggleModal();
   }
 
   return (
     <>
       <button className="btn-sign" onClick={action(() => handleClick())}>
-        {store.setSignedIn} {store.open.toString()}
+        {store.setSignedIn}
       </button>
 
       <SimpleModal
@@ -27,16 +23,6 @@ const SgnButton = observer(({ store }) => {
         handleClose={action(() => store.setModalClose())}
         store={store}
       />
-
-      {/* <Modal
-        style={{ backgroundColor: "white" }}
-        open={store.open}
-        onClose={store.setModalClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {<h1>hoho</h1>}
-      </Modal> */}
     </>
   );
 });
