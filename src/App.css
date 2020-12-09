@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Exo 2", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  min-height: 8vh;
+  align-items: center;
+  position: relative;
+  top: 0px;
+  background-color: rgba(240, 246, 247, 0.35);
+  width: 100%;
+  color: rgba(240, 246, 247, 0.15);
+}
+
+.logo {
+  display: flex;
+  color: rgba(134, 27, 27, 0.85);
+}
+
+.signinout {
+  width: 100px;
+}
+
+.btn-sign {
+  font-size: large;
+  padding: 5px;
+  opacity: 0.5;
+}
+
+.btn-sign:hover {
+  cursor: pointer;
+}
+.navlinks {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  list-style: none;
+  letter-spacing: 1px;
+  font-size: 20px;
+  padding: 5px;
+  opacity: 0.6;
+}
+
+.back {
+  /* background-image: url(https://source.unsplash.com/random); */
+  background-repeat: "no-repeat";
+  background-image: url("./img/lago.webp");
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-size: cover;
+}
+
+.main {
+  /* margin-top: 8vh; */
+  text-align: center;
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.ham-toggle {
+  cursor: pointer;
+  color: blue;
+  display: none;
+}
+
+@media screen and (max-width: 850px) {
+  body {
+    overflow-x: hidden;
+  }
+  .ham-toggle {
+    display: block;
+  }
+  .navlinks {
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+    transform: translateX(300px);
+  }
+}
