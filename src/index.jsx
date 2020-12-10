@@ -49,7 +49,8 @@ function startApp() {
   history.listen(({ location }) => {
     renderRoute(location);
   });
-  renderRoute(history.location);
+  const currentLocation = history.location;
+  renderRoute(currentLocation);
   // reportWebVitals(console.log);
 }
 

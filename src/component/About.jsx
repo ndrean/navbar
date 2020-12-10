@@ -1,14 +1,24 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { observer } from "mobx-react-lite";
 
 const About = observer(({ store }) => {
+  /*  !! need to wrap "store.inc" inside "useEffect" otherwise BUG below
+  "Cannot update a component (`wrappedComponent`) while rendering ..."
+  */
+
+  // useEffect(() => {
+  //   store.inc();
+  // }, []);
+
   return (
-    <div className="main">
-      <h1 style={{ marginTop: "33%", marginBottom: "66%" }}>
-        You visited this page {store.inc() + 1} time(s) and you have{" "}
-        {store.nbUsers} contacts
-      </h1>
-    </div>
+    <Suspense fallback={<span></span>}>
+      <div className="main">
+        <h1 style={{ marginTop: "33%", marginBottom: "66%" }}>
+          This page has been visited {store.nb} times and you have{" "}
+          {store.nbUsers} contacts
+        </h1>
+      </div>
+    </Suspense>
   );
 });
 

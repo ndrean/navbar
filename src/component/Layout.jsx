@@ -1,23 +1,25 @@
 import React, { Suspense, lazy } from "react";
 
+// import { ThemeProvider } from "@material-ui/core/styles";
+// import theme from "../utils/theme";
 // import { StateProvider } from "../context/statectx";
 
-// import Navbar from "./Navbar";
 import store from "../utils/store";
 const LazyNavbar = lazy(() => import("./Navbar"));
 
 const Layout = ({ children }) => {
   return (
     // <StateProvider>
-    <Suspense fallback={<span></span>}>
+    // <ThemeProvider theme={theme}>
+    <Suspense fallback={<span>Loading...</span>}>
       <div className="back">
         <LazyNavbar store={store} />
         {children}
       </div>
     </Suspense>
+    // </ThemeProvider>
     // </StateProvider>
   );
 };
-// return ({ children }) => React.createElement(observer(Wrapper), { children }); ???? Fred ???
 
 export default Layout;

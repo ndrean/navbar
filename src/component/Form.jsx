@@ -32,7 +32,7 @@ const Form = memo(() => {
     window.alert(`Welcome`);
   }
 
-  console.log("render form");
+  console.log("React-Hook-Form -> render form");
 
   return (
     <div className="main">
@@ -44,6 +44,7 @@ const Form = memo(() => {
             type="email"
             name="email"
             id="email"
+            autoComplete="current-email"
             // value={email}
             // onChange={(e) => setEmail(e.target.value)}
             ref={register({
@@ -67,6 +68,7 @@ const Form = memo(() => {
               type="password"
               id="password"
               name="password"
+              autoComplete="current-password"
               ref={register({
                 required: { value: true, message: "Required" },
                 minLength: {

@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-
-// import { observer } from "mobx-react-lite";
 import { action } from "mobx";
 
-// import history from "../utils/history";
+import {
+  Button,
+  CssBaseline,
+  TextField,
+  Paper,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,10 +48,9 @@ const SignIn = ({ store }) => {
     }
 
     store.setModalClose();
-    // history.replace("");
   };
 
-  console.log("render form");
+  console.log("Classic Form -> render form");
 
   return (
     <>
@@ -83,7 +80,7 @@ const SignIn = ({ store }) => {
                 fullWidth
                 name="email"
                 type="email"
-                autoComplete="current-email"
+                autoComplete="email"
                 //  autoFocus
                 required
                 variant="outlined"

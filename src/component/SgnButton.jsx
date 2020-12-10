@@ -3,18 +3,19 @@ import React from "react";
 
 import { action } from "mobx";
 import { observer } from "mobx-react-lite";
+
 import "../App.css";
 import SimpleModal from "./SimpleModal";
 
 const SgnButton = observer(({ store }) => {
-  function handleClick() {
+  function handleModalClick() {
     store.setMsg();
     store.isSignedIn ? store.toggleSgn() : store.toggleModal();
   }
 
   return (
     <>
-      <button className="btn-sign" onClick={action(() => handleClick())}>
+      <button className="btn-sign" onClick={action(() => handleModalClick())}>
         {store.setSignedIn}
       </button>
 

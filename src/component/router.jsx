@@ -9,6 +9,7 @@ import Contacts from "./Contacts";
 import Home from "./Home";
 import Form from "./Form";
 import User from "./User";
+import SignInForm from "./SignInForm";
 const LazyLayout = lazy(() => import("./Layout"));
 
 export default new UniversalRouter([
@@ -30,9 +31,8 @@ export default new UniversalRouter([
         action: async () => {
           /*
           let home2 = await Promise.resolve(import("./Home2"));
-          return { component: home2({ store: store }) };
+          return home2({ store: store });
           */
-
           return <Home store={store} />;
         },
       },
@@ -40,6 +40,12 @@ export default new UniversalRouter([
         path: "/about",
         async action() {
           return <About store={store} />;
+        },
+      },
+      {
+        path: "/signinform",
+        async action() {
+          return <SignInForm store={store} />;
         },
       },
       {

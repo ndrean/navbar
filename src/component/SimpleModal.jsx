@@ -1,8 +1,7 @@
 import React from "react";
-// import { observer } from "mobx-react-lite";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-// import store from "../utils/store";
 
 import SignIn from "./SignIn";
 
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     // border: "2px solid #000",
     // boxShadow: theme.shadows[5],
     // padding: theme.spacing(2, 4, 3),
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
   },
 }));
 

@@ -1,6 +1,7 @@
 import { action, observable } from "mobx";
 
 const store = observable({
+  // modal version
   open: false,
   setModalOpen: action(function setOpen() {
     store.open = true;
