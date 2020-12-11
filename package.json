@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "clsx": "^1.1.1",
     "history": "^5.0.0",
     "mobx": "^6.0.4",
     "mobx-react-lite": "^3.1.6",
@@ -16,6 +17,7 @@
     "react-hook-form": "^6.12.2",
     "react-scripts": "4.0.1",
     "source-map-explorer": "^2.5.1",
+    "static-server": "^2.2.1",
     "universal-router": "^9.0.1",
     "web-vitals": "^0.2.4"
   },
@@ -45,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "babel-plugin-import": "^1.13.3",
     "babel-plugin-transform-imports": "^2.0.0",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.1.7"

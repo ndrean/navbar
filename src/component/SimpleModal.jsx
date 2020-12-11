@@ -1,7 +1,8 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
+import { Modal } from "@material-ui/core";
+// import Dialog from "@material-ui/core/Dialog";
 
 import SignIn from "./SignIn";
 

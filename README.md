@@ -1,20 +1,23 @@
-# CRA
+## CRA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CRA with updated ServiceWorker: `npx create-react-app my-app --template cra-template-pwa`
 
-With updated ServiceWorker: `npx create-react-app my-app --template cra-template-pwa`
-
-# Potential random (?) bug
+## Difficult bugs to remove
 
 "Cannot update a component from inside the function body of a different component."
 
 "Cannot update a component (`_c`) while rendering a different component (`_c`)"
 
-# React-hook-forms & Material-UI
+## React-hook-forms & Material-UI
 
-- need to register the form fields `TexField` component with the wrapper `Controller`.
+- need to register the form fields `TexField` component with `inputRef={register()}`
 
-- Material-UI template: <https://material-ui.com/getting-started/templates/>
+- need to control the form field `Checkbox` component with:
+
+```js
+control={
+   <Controller as={Checkbox} control={control}  defaultValue={false} name="remember"/>
+```
 
 ## Bundle analysis
 
@@ -25,6 +28,9 @@ With updated ServiceWorker: `npx create-react-app my-app --template cra-template
 `yarn start`
 `yarn build`
 `yarn analyze`
+`static-server` from the "/build" folder.
+
+With the conflict of Ruby's `serve`, used **static-server** to run the build file from the folder "./build". <https://www.npmjs.com/package/static-server>
 
 ### `yarn eject`
 

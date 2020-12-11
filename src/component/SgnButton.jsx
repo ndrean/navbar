@@ -4,6 +4,8 @@ import React from "react";
 import { action } from "mobx";
 import { observer } from "mobx-react-lite";
 
+import { Button } from "@material-ui/core";
+
 import "../App.css";
 import SimpleModal from "./SimpleModal";
 
@@ -15,9 +17,9 @@ const SgnButton = observer(({ store }) => {
 
   return (
     <>
-      <button className="btn-sign" onClick={action(() => handleModalClick())}>
+      <Button onClick={action(() => handleModalClick())}>
         {store.setSignedIn}
-      </button>
+      </Button>
 
       <SimpleModal
         open={store.open}

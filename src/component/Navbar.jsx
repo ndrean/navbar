@@ -3,30 +3,43 @@ import { observer } from "mobx-react-lite";
 import { action } from "mobx";
 import history from "../utils/history";
 
+import SgnButton from "./SgnButton";
+
 import {
   AppBar,
   Toolbar,
   IconButton,
+  Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
   Typography,
-  // InputBase,
+  Divider,
   Badge,
   MenuItem,
   Menu,
-  // MeunuIcon,
   Link,
 } from "@material-ui/core";
 
-import { fade, makeStyles } from "@material-ui/core/styles";
-import MailIcon from "@material-ui/icons/Mail";
+import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
-// import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import PeopleAltRoundedIcon from "@material-ui/icons/PeopleAltRounded";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import VisibilityRoundedIcon from "@material-ui/icons/VisibilityRounded";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import InfoIcon from "@material-ui/icons/Info";
+import LockOpenOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
+import OpenInNewOutlinedIcon from "@material-ui/icons/OpenInNewOutlined";
+import SpellcheckOutlinedIcon from "@material-ui/icons/SpellcheckOutlined";
+import ContactsOutlinedIcon from "@material-ui/icons/ContactsOutlined";
+import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 
 const useStyles = makeStyles((theme) => ({
+  list: {
+    width: 200,
+  },
   grow: {
     flexGrow: 1,
   },
@@ -36,46 +49,6 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
     marginRight: theme.spacing(2),
-  },
-  menuItem: {
-    marginLeft: theme.spacing(5),
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
   },
   sectionDesktop: {
     display: "none",
@@ -91,43 +64,103 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = observer(({ store }) => {
+const LinkItem = ({ to, handler, text, children }) => {
+  return (
+    <MenuItem component={Link} href={to} onClick={action(handler)}>
+      <ListItemIcon>{children}</ListItemIcon>
+      <ListItemText primary={text} />
+    </MenuItem>
+  );
+};
+
+const Navbar = observer(({ store, ...props }) => {
   const classes = useStyles();
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+  // <- drawer
+  const [state, setState] = React.useState({ left: false });
+  const anchor = "left";
+  const toggleDrawer = (anchor, open) => () => {
+    console.log(open, state);
+    setState({ ...state, [anchor]: open });
   };
 
-  const handleMobileMenuClose = () => {
+  const list = (anchor) => (
+    <div className={classes.list} role="presentation">
+      <List>
+        {["Home", "About", "Login in"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              {index === 0 && (
+                <LinkItem to="/" handler={handleMenuClose} text={text}>
+                  <HomeOutlinedIcon />
+                </LinkItem>
+              )}
+              {index === 1 && (
+                <LinkItem to="/about" handler={handleAbout} text={text}>
+                  <InfoIcon />
+                </LinkItem>
+              )}
+              {index === 2 && (
+                <LinkItem
+                  to="/signinform"
+                  handler={handleMenuClose}
+                  text={text}
+                >
+                  <LockOpenOutlinedIcon />
+                </LinkItem>
+              )}
+            </ListItemIcon>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {["Contacts"].map((text, index) => (
+          <ListItem button key={text}>
+            {index === 0 && (
+              <LinkItem to="/contacts" handler={handleMenuClose} text={text}>
+                <ContactsOutlinedIcon />
+              </LinkItem>
+            )}
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
+  // drawer -<
+
+  function handleProfileMenuOpen(e) {
+    setAnchorEl(e.currentTarget);
+  }
+
+  function handleMobileMenuClose() {
     setMobileMoreAnchorEl(null);
-  };
+  }
 
-  const handleContacts = (e) => {
-    handleMenuClose(e);
-  };
-  const handleAbout = (e) => {
+  function handleAbout(e) {
+    console.log("about");
     store.inc();
     handleMenuClose(e);
-  };
+  }
 
-  const handleMenuClose = (e) => {
+  function handleMenuClose(e) {
+    console.log("here");
     setAnchorEl(null);
-    handleMobileMenuClose();
+    // toggleDrawer(anchor, false);
     e.preventDefault();
     history.push({ pathname: e.currentTarget.pathname });
-  };
+  }
 
-  const handleMobileMenuOpen = (event) => {
+  function handleMobileMenuOpen(event) {
     setMobileMoreAnchorEl(event.currentTarget);
-  };
+  }
 
   const menuId = "primary-search-account-menu";
-
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -159,20 +192,20 @@ const Navbar = observer(({ store }) => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
+        <IconButton aria-label="show number views" color="inherit">
+          <Badge badgeContent={store.nb} color="secondary">
+            <VisibilityRoundedIcon />
           </Badge>
         </IconButton>
-        <p>Messages</p>
+        {/* <p>Views</p> */}
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
+        <IconButton aria-label="show number contacts" color="inherit">
+          <Badge badgeContent={store.nbUsers} color="secondary">
+            <PeopleAltRoundedIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
+        <p>Contacts</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -189,90 +222,85 @@ const Navbar = observer(({ store }) => {
   );
 
   return (
-    <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            The Downwinder
-          </Typography>
-          <div className={classes.grow}>
+    <>
+      <div className={classes.grow}>
+        <AppBar position="static">
+          <Toolbar>
+            <Button
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer(anchor, true)}
+            >
+              <MenuIcon />
+            </Button>
+            <Drawer
+              anchor={anchor}
+              open={state[anchor]}
+              onClose={toggleDrawer(anchor, false)}
+            >
+              {list(anchor)}
+            </Drawer>
+
             <Typography className={classes.title} variant="h6" noWrap>
-              <Link href="/" onClick={handleMenuClose} color="inherit">
-                Home
-              </Link>
-              <Link
-                href="/about"
-                onClick={action((e) => handleAbout(e))}
-                color="inherit"
-              >
-                About
-              </Link>
-
-              <Link
-                href="/contacts"
-                onClick={action((e) => handleContacts(e))}
-                color="inherit"
-              >
-                Contacts
-              </Link>
-
-              <Link
-                href="/signinform"
-                onClick={handleMenuClose}
-                color="inherit"
-              >
-                Login in
-              </Link>
+              The Downwinder
             </Typography>
-          </div>
 
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show number contacts" color="inherit">
-              <Badge badgeContent={store.nbUsers} color="secondary">
-                <PeopleAltRoundedIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show new views" color="inherit">
-              <Badge badgeContent={store.nb} color="secondary">
-                <VisibilityRoundedIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </div>
+            <div className={classes.grow}>
+              <Typography className={classes.title} variant="h6" noWrap>
+                <SgnButton store={store} />
+                {/* <Link href="/" onClick={handleMenuClose} color="inherit">
+                  Home
+                </Link> */}
+              </Typography>
+            </div>
+
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+              <IconButton aria-label="show number contacts" color="inherit">
+                <Badge badgeContent={store.nbUsers} color="secondary">
+                  <PeopleAltRoundedIcon />
+                </Badge>
+              </IconButton>
+              <IconButton aria-label="show new views" color="inherit">
+                <Badge badgeContent={store.nb} color="secondary">
+                  <VisibilityRoundedIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </div>
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <Badge
+                  badgeContent={store.nbUsers + store.nb}
+                  color="secondary"
+                >
+                  <MoreIcon />
+                </Badge>
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+      </div>
+    </>
   );
 });
 

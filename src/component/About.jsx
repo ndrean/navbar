@@ -14,8 +14,8 @@ const About = observer(({ store }) => {
     <Suspense fallback={<span></span>}>
       <div className="main">
         <h1 style={{ marginTop: "33%", marginBottom: "66%" }}>
-          This page has been visited {store.nb} times and you have{" "}
-          {store.nbUsers} contacts
+          This page has been visited {store.nb} time(s) and you have{" "}
+          {store.nbUsers} contact(s)
         </h1>
       </div>
     </Suspense>
