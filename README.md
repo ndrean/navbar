@@ -1,14 +1,12 @@
 # A React app using Mobx, Universal Router, Material-UI, React-Hook-Forms
 
+<http://rmm.surge.sh/>
+
 ## TODOs
 
 1. Optimize images
 2. Finish CRUD on users
 3. Compare with React Router for passing props vs Universal Router - Mobx
-
-## Visible at:
-
-<http://rmm.surge.sh/>
 
 ## CRA / Config Material-UI to use imports
 
