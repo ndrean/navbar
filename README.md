@@ -1,12 +1,28 @@
-## CRA
+# A React app using Mobx, Universal Router, Material-UI, React-Hook-Forms
+
+## TODOs
+
+1. Optimize images
+2. Finish CRUD on users
+3. Compare with React Router for passing props vs Universal Router - Mobx
+
+## Visible at:
+
+<http://rmm.surge.sh/>
+
+## CRA / Config Material-UI to use imports
 
 CRA with updated ServiceWorker: `npx create-react-app my-app --template cra-template-pwa`
 
-## Difficult bugs to remove
+## Difficult code bugs to remove from Mobx
 
 "Cannot update a component from inside the function body of a different component."
 
 "Cannot update a component (`_c`) while rendering a different component (`_c`)"
+
+-> put in `useEffect` for one,
+-> perform action in navbar method calling the component rather than in the component,
+-> use `action` on every event method.
 
 ## React-hook-forms & Material-UI
 
@@ -17,6 +33,35 @@ CRA with updated ServiceWorker: `npx create-react-app my-app --template cra-temp
 ```js
 control={
    <Controller as={Checkbox} control={control}  defaultValue={false} name="remember"/>
+```
+
+## Insert image in CardMedia - Material-UI from a folder
+
+To insert several cards, I mapped an array `cards` and needed to:
+
+1. `import...` (Webpack),
+2. use `component="img"`
+3. use `image` tag
+
+```js
+import imgReact from "../img/React.png";
+import imgMobx from "../img/Mobx.jpeg";
+...
+const cards = [
+  {
+    name: "React",
+    image: imgReact,
+    url: "https://fr.reactjs.org/",
+  },
+  {
+    name: "Mobx",
+    image: imgMobx,
+    url: "https://mobx.js.org/README.html",
+  },
+  [...]
+}
+{cards.map(({ name, image, url }) => (...
+<CardMedia component="img" image={image} title={`tech: ${name}`} loading="lazy" />
 ```
 
 ## Note on Promise.all and useEffect with async
