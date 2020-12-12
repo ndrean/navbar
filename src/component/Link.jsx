@@ -1,6 +1,6 @@
-import React, { memo } from "react";
+// import React from "react";
 
-const Link = memo(({ path, handler, children }) => {
+const Link = ({ path, handler, children }) => {
   return (
     <li
       style={{
@@ -15,6 +15,6 @@ const Link = memo(({ path, handler, children }) => {
       </a>
     </li>
   );
-});
+};
 
 export default Link;

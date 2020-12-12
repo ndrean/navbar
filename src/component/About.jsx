@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { observer } from "mobx-react-lite";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,18 +14,18 @@ import {
   Link,
 } from "@material-ui/core";
 
-import imgReact from "../img/React.png";
-import imgMobx from "../img/Mobx.jpeg";
-import imgMaterial from "../img/Material-ui.png";
-import imgRHF from "../img/RHF.png";
-import imgUR from "../img/Universal-Router.png";
+import imgReact from "../img/React.webp";
+import imgMobx from "../img/Mobx.webp";
+import imgMaterial from "../img/Material-ui.webp";
+import imgRHF from "../img/RHF.webp";
+import imgUR from "../img/Universal-Router.webp";
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {},
   card: {},
   cardMedia: {
-    // height: "200px",
-    // with: "200px",
+    height: "190px",
+    with: "190px",
     padding: "5%",
     objectFit: "contain",
   },

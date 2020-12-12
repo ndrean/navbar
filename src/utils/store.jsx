@@ -52,9 +52,12 @@ const store = observable({
     if (store.users.length > 0) return store.users[idx].email;
   },
   getUser: function (email) {
-    const emails = Array.from(store.users, ({ email }) => email);
-    const index = emails.findIndex((elt) => elt === email);
-    return store.users[index];
+    store.users.map((user) => {
+      if (user.email === email) return user;
+    });
+    // const emails = Array.from(store.users, ({ email }) => email);
+    // const index = emails.findIndex((elt) => elt === email);
+    // return store.users[index];
   },
 });
 

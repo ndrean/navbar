@@ -7,13 +7,11 @@
   font-family: "Exo 2", sans-serif;
 }
 
-body {
-}
 .back {
   /* background-image: url(https://source.unsplash.com/random); */
   background-repeat: "no-repeat";
   /* background-image: url("./img/simione.jpeg"); url("./img/lago.webp"); */
-  height: 100vh;
+  height: 200vh;
   width: 100vw;
   background-position: center;
   background-size: cover;

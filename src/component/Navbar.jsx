@@ -148,9 +148,8 @@ const Navbar = observer(({ store, ...props }) => {
 
   function handleMenuClose(e) {
     setAnchorEl(null);
-    setState({ left: false });
+    setState({ ...state, left: false });
     e.preventDefault();
-
     history.push({ pathname: e.currentTarget.pathname });
   }
 

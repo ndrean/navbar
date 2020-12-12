@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import "../spinner.css";
 
-export default function Spinner() {
+const Spinner = memo(() => {
   return (
     <svg
       className="spinner"
@@ -21,4 +21,5 @@ export default function Spinner() {
       ></circle>
     </svg>
   );
-}
+});
+export default Spinner;

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+// import React from "react";
 import { useForm } from "react-hook-form";
 
 // import history from "../utils/history";
@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 //   });
 // };
 
-const Form = memo(() => {
+const Form = () => {
   const { register, handleSubmit, errors, formState } = useForm({
     defaultValues: {
       email: "",
@@ -94,6 +94,6 @@ const Form = memo(() => {
       </div>
     </div>
   );
-});
+};
 
 export default Form;
