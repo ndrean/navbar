@@ -19,6 +19,21 @@ control={
    <Controller as={Checkbox} control={control}  defaultValue={false} name="remember"/>
 ```
 
+## Note on Promise.all and useEffect with async
+
+```js
+useEffect(() => {
+  async function fetchData() {
+    // You can await here
+    const response = await MyAPI.getData(someId);
+    // ...
+  }
+  fetchData();
+}, []);
+```
+
+<https://javascript.info/promise-api>
+
 ## Bundle analysis
 
 `yarn add source-map-explorer` and add `"analyze": "source-map-explorer 'build/static/js/*.js'"` in **package.json**.

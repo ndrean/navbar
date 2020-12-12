@@ -51,6 +51,11 @@ const store = observable({
   getUserEmail: function (idx) {
     if (store.users.length > 0) return store.users[idx].email;
   },
+  getUser: function (email) {
+    const emails = Array.from(store.users, ({ email }) => email);
+    const index = emails.findIndex((elt) => elt === email);
+    return store.users[index];
+  },
 });
 
 export default store;

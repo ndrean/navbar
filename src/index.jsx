@@ -9,6 +9,8 @@ import Layout from "./component/Layout";
 import { configure } from "mobx";
 // import reportWebVitals from "./reportWebVitals";
 
+import img404 from "./img/404.jpg";
+
 configure({
   enforceActions: "always",
   computedRequiresReaction: true,
@@ -32,11 +34,12 @@ async function renderRoute(location) {
     console.log("Nothing there: ", location);
     return ReactDOM.render(
       <Layout>
-        <h1>
-          <a href="Errare humanum est, perseverare diabolicum — Wikipédia">
-            Errare humanum est, perseverare diabolicum — Wikipédia
-          </a>
-        </h1>
+        <h1>Errare humanum est, perseverare diabolicum</h1>
+        <img
+          src={img404}
+          alt="error 404"
+          style={{ height: "800px", width: "1200px" }}
+        />
       </Layout>,
       anchor
     );

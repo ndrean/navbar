@@ -31,8 +31,8 @@ import VisibilityRoundedIcon from "@material-ui/icons/VisibilityRounded";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import InfoIcon from "@material-ui/icons/Info";
 import LockOpenOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
-import OpenInNewOutlinedIcon from "@material-ui/icons/OpenInNewOutlined";
-import SpellcheckOutlinedIcon from "@material-ui/icons/SpellcheckOutlined";
+// import OpenInNewOutlinedIcon from "@material-ui/icons/OpenInNewOutlined";
+// import SpellcheckOutlinedIcon from "@material-ui/icons/SpellcheckOutlined";
 import ContactsOutlinedIcon from "@material-ui/icons/ContactsOutlined";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 
@@ -85,7 +85,6 @@ const Navbar = observer(({ store, ...props }) => {
   const [state, setState] = React.useState({ left: false });
   const anchor = "left";
   const toggleDrawer = (anchor, open) => () => {
-    console.log(open, state);
     setState({ ...state, [anchor]: open });
   };
 
@@ -143,16 +142,15 @@ const Navbar = observer(({ store, ...props }) => {
   }
 
   function handleAbout(e) {
-    console.log("about");
-    store.inc();
+    store.inc(); // <- ok for Mobx
     handleMenuClose(e);
   }
 
   function handleMenuClose(e) {
-    console.log("here");
     setAnchorEl(null);
-    // toggleDrawer(anchor, false);
+    setState({ left: false });
     e.preventDefault();
+
     history.push({ pathname: e.currentTarget.pathname });
   }
 

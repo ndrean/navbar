@@ -1,4 +1,6 @@
 import * as React from "react";
+import { action } from "mobx";
+
 import {
   Avatar,
   Button,
@@ -55,14 +57,19 @@ export default function SignInForm({ store }) {
     handleSubmit,
     control,
     errors,
-    reset,
-    formState: { isSubmitting, isSubmitSuccessful },
+    // reset,
+    // formState: { isSubmitting, isSubmitSuccessful },
   } = useForm({ mode: "onBlur" });
 
-  function onSubmit(data) {
-    console.log(data);
-    reset();
-  }
+  const onSubmit = action(({ email, password }) => {
+    const emails = Array.from(store.users, ({ email }) => email);
+    if (!emails.includes(email)) {
+      store.addUser({ email: email, name: password });
+      store.toggleSgn();
+      store.setMsg();
+    }
+    store.setModalClose();
+  });
 
   console.log("RHF -> render form");
 

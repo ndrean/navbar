@@ -35,7 +35,7 @@ const Form = memo(() => {
   console.log("React-Hook-Form -> render form");
 
   return (
-    <div className="main">
+    <div>
       <div style={{ backgroundColor: "white" }}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="email">Email</label>

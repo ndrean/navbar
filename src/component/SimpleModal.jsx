@@ -1,10 +1,10 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Modal } from "@material-ui/core";
+import Modal from "@material-ui/core/Modal";
 // import Dialog from "@material-ui/core/Dialog";
 
-import SignIn from "./SignIn";
+import SignIn from "./SignIn.jsx";
 
 // function rand() {
 //   return Math.round(Math.random() * 20) - 10;

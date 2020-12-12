@@ -1,7 +1,8 @@
 import React, { Suspense, lazy } from "react";
 
+import Spinner from "./Spinner";
 // import { ThemeProvider } from "@material-ui/core/styles";
-// import theme from "../utils/theme";
+// import muitheme from "../utils/theme";
 // import { StateProvider } from "../context/statectx";
 
 import store from "../utils/store";
@@ -11,8 +12,9 @@ const Layout = ({ children }) => {
   return (
     // <StateProvider>
     // <ThemeProvider theme={theme}>
-    <Suspense fallback={<span>Loading...</span>}>
+    <Suspense fallback={<Spinner />}>
       <div className="back">
+        {/* <div> */}
         <LazyNavbar store={store} />
         {children}
       </div>

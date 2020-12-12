@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { action } from "mobx";
-
-import { useForm } from "react-hook-form";
 
 import {
   Button,
@@ -37,24 +35,22 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = ({ store }) => {
   const { root, paperForm, form, submit } = useStyles();
 
-  console.log("RHF -> Modal");
-  const {
-    register,
-    handleSubmit,
-    errors,
-    // reset,
-    // formState: { isSubmitting, isSubmitSuccessful },
-  } = useForm({ mode: "onBlur" });
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
 
-  const onSubmit = action(({ email, password }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const emails = Array.from(store.users, ({ email }) => email);
     if (!emails.includes(email)) {
-      store.addUser({ email: email, name: password });
+      store.addUser({ email: email, name: pwd });
       store.toggleSgn();
       store.setMsg();
     }
+
     store.setModalClose();
-  });
+  };
+
+  console.log("Classic Form -> render form");
 
   return (
     <>
@@ -72,15 +68,12 @@ const SignIn = ({ store }) => {
               Sign in
             </Typography>
 
-            <form className={form} noValidate onSubmit={handleSubmit(onSubmit)}>
+            <form
+              className={form}
+              noValidate
+              onSubmit={action((e) => handleSubmit(e))}
+            >
               <TextField
-                inputRef={register({
-                  required: { value: true, message: "Required" },
-                  pattern: {
-                    value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                    message: "Email is not valid, should be my@email.com",
-                  },
-                })}
                 id="outlined-email-input"
                 label="Email"
                 margin="normal"
@@ -91,20 +84,15 @@ const SignIn = ({ store }) => {
                 //  autoFocus
                 required
                 variant="outlined"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                // isError={errors.email}
+                // errorMessage={errors.message}
               />
-              {errors.email && (
-                <p style={{ color: "red", fontWeight: "bold" }}>
-                  {errors.email.message}
-                </p>
-              )}
+
               <TextField
-                inputRef={register({
-                  required: { value: true, message: "Required" },
-                  minLength: {
-                    value: 6,
-                    message: "Password should be at-least 6 characters.",
-                  },
-                })}
                 id="outlined-password-input"
                 label="Password"
                 name="password"
@@ -113,12 +101,10 @@ const SignIn = ({ store }) => {
                 autoComplete="current-password"
                 margin="normal"
                 fullWidth
+                value={pwd}
+                onChange={(e) => setPwd(e.target.value)}
               />
-              {errors.password && (
-                <p style={{ color: "red", fontWeight: "bold" }}>
-                  {errors.password.message}
-                </p>
-              )}
+
               <Button
                 type="submit"
                 fullWidth

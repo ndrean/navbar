@@ -4,6 +4,7 @@ import UniversalRouter from "universal-router";
 
 import store from "../utils/store";
 
+import Spinner from "./Spinner";
 import About from "./About";
 import Contacts from "./Contacts";
 import Home from "./Home";
@@ -19,8 +20,8 @@ export default new UniversalRouter([
       const component = await next();
       return (
         component && (
-          <Suspense fallback={<span>Spinner</span>}>
-            <LazyLayout store={store}>{component}</LazyLayout>;
+          <Suspense fallback={<Spinner />}>
+            <LazyLayout store={store}>{component}</LazyLayout>
           </Suspense>
         )
       );
@@ -64,10 +65,10 @@ export default new UniversalRouter([
             },
           },
           {
-            path: "/:id",
+            path: "/:email",
             async action(context) {
-              const idx = context.params.id;
-              return <User idx={idx} store={store} />;
+              const email = context.params.email;
+              return <User email={email} store={store} />;
             },
           },
         ],
