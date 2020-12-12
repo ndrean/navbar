@@ -77,6 +77,44 @@ useEffect(() => {
 
 <https://javascript.info/promise-api>
 
+## Note on arrays of objects
+
+> replace an object in the array on attribute change
+
+```js
+const A = [{"a":1, "b":true},{"a":2,"b":false}]
+const [values, setValues] = useState(A)
+// we want to replace with newValue = {"a":2,"b":true}
+setValues(prev => {
+  return prev.map(obj=> {
+    if (obj.a===newValue.a) return {...obj, newValue.b};
+  return obj
+  })
+})
+```
+
+> Append to an array of objects if not present
+
+```js
+const store = [
+  { a: 1, b: true },
+  { a: 2, b: false },
+];
+const [values, setValues] = useState(store);
+const result = [
+  { a: 2, b: true },
+  { a: 3, b: false },
+];
+const keysOfAs = Array.from(store, ({ a }) => a); // array of keys values
+setValues((prev) => {
+  for (const obj of result) {
+    if (!keysOfAs.includes(obj.a)) [...prev, obj];
+  }
+});
+```
+
+>
+
 ## Bundle analysis
 
 `yarn add source-map-explorer` and add `"analyze": "source-map-explorer 'build/static/js/*.js'"` in **package.json**.
@@ -129,3 +167,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+```
+
+```

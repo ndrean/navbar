@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 // import Dialog from "@material-ui/core/Dialog";
 
-import SignIn from "./SignIn.jsx";
+import SignInModal from "./SignInModal.jsx";
 
 // function rand() {
 //   return Math.round(Math.random() * 20) - 10;
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     // border: "2px solid #000",
     // boxShadow: theme.shadows[5],
     // padding: theme.spacing(2, 4, 3),
-    backgroundColor: "rgba(0, 0, 0, 0.1)",
+    // backgroundColor: "rgba(0, 0, 0, 0.1)",
   },
 }));
 
@@ -40,7 +40,7 @@ const SimpleModal = ({ open, handleClose, store }) => {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <SignIn store={store} />
+      <SignInModal store={store} />
     </div>
   );
 

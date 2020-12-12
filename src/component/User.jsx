@@ -2,12 +2,15 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { makeStyles } from "@material-ui/core/styles";
 
+import EditUser from "./EditUser";
+
 import {
   Grid,
   Card,
   CardContent,
   Typography,
   CardMedia,
+  Box,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,42 +20,60 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     // direction: "column",
     alignItems: "center",
-    height: "50vh",
-    width: "100vw",
+    // height: "50vh",
+    // width: "100vw",
     // overflow: "hidden",
-    // backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.default,
   },
   card: {
     flexBasis: "100%",
     maxWidth: "160px",
     textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
   },
   media: {
     height: 140,
   },
 }));
 
+const defaultBoxprops = {
+  bgcolor: "background.paper",
+  borderColor: "text.primary",
+  m: 1,
+  border: 1,
+  style: { width: "8rem", height: "3rem", backgroundColor: "#424242" },
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  margin: "10px",
+};
+
 const User = observer(({ store, email }) => {
   const classes = useStyles();
-  let { first_name, last_name, avatar } = store.getUser(email);
+  const user = store.getUser(email);
+  let { first_name, last_name, avatar } = user;
   const fullName = first_name ? first_name + " " + last_name : email;
 
   return (
-    <Grid container item xs={12} className={classes.root}>
-      <Card variant="outlined" className={classes.card}>
-        <CardContent>
-          <Typography>{fullName}</Typography>
-          {avatar && (
-            <CardMedia
-              className={classes.media}
-              image={avatar}
-              title={last_name}
-              loading="lazy"
-            />
-          )}
-        </CardContent>
-      </Card>
-    </Grid>
+    <>
+      <Grid container item xs={12} className={classes.root}>
+        <Card variant="outlined" className={classes.card} xs={12} sm={6}>
+          <CardContent>
+            <Box {...defaultBoxprops}>{fullName}</Box>
+            {avatar && (
+              <CardMedia
+                className={classes.media}
+                image={avatar}
+                title={last_name}
+                loading="lazy"
+              />
+            )}
+          </CardContent>
+        </Card>
+        <EditUser user={user} store={store} item xs={12} sm={6} />
+      </Grid>
+    </>
   );
 });
 

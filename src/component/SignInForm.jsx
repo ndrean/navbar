@@ -29,24 +29,24 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    color: theme.palette.secondary.light,
-    backgroundColor: "#fff",
+    // color: theme.palette.secondary.light,
+    // backgroundColor: "#fff",
     // theme.palette.primary.light,
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.light,
+    // backgroundColor: theme.palette.secondary.light,
   },
   form: {
     width: "90%",
     marginTop: theme.spacing(1),
-    color: theme.palette.primary.main,
-    backgroundColor: "#fff",
+    // color: theme.palette.primary.main,
+    // backgroundColor: "#fff",
     // theme.palette.primary.light,
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: theme.palette.secondary.dark,
+    // backgroundColor: theme.palette.secondary.dark,
   },
 }));
 

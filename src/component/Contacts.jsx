@@ -4,12 +4,12 @@ import { action } from "mobx";
 import history from "../utils/history";
 
 import {
-  Grid,
-  // Card,
-  // CardContent,
+  List,
+  ListItem,
+  Box,
+  ListItemIcon,
   Typography,
   Avatar,
-  // CardMedia,
   Paper,
   Link,
 } from "@material-ui/core";
@@ -21,35 +21,51 @@ import fetchUsers from "../utils/fetchUsers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
+    width: "100%",
     backgroundColor: theme.palette.background.paper,
+
+    // display: "flex",
+    // flexWrap: "wrap",
+    // justifyContent: "space-around",
+    // overflow: "hidden",
+    // backgroundColor: theme.palette.background.paper,
   },
   paper: {
-    padding: theme.spacing(2),
+    // padding: theme.spacing(5),
     textAlign: "center",
     color: theme.palette.text.secondary,
+    direction: "column",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    padding: "0px 0px 0px 15px",
   },
-  gridList: {
-    flexWrap: "wrap",
-    transform: "translateZ(0)",
-  },
-  title: {
-    color: theme.palette.primary,
-  },
-  titleBar: {
-    background:
-      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
-  },
-  media: {
-    height: 140,
+  listItem: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    // width: "40px",
+    // flexWrap: "wrap",
+    // transform: "translateZ(0)",
   },
 }));
+
+const defaultBoxprops = {
+  bgcolor: "background.paper",
+  borderColor: "text.primary",
+  m: 1,
+  border: 1,
+  style: {
+    padding: "1rem",
+    height: "3rem",
+    backgroundColor: "#424242",
+    width: "16rem",
+  },
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  margin: "10px",
+};
 
 const Contacts = observer(({ store }) => {
   const classes = useStyles();
@@ -74,30 +90,30 @@ const Contacts = observer(({ store }) => {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3} style={{ margin: "50px" }}>
-        {store.users &&
-          store.users.map((user, idx) => (
-            <Grid container key={user.email} spacing={1}>
-              <Grid item xs={1}>
-                {/* <Paper className={classes.paper}> */}
-                <Avatar alt={user.last_name} src={user.avatar} loading="lazy" />
-                {/* </Paper> */}
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Paper className={classes.paper}>
-                  <Typography>
-                    <Link
-                      href={`/contacts/${user.email}`}
-                      onClick={handleClick}
-                    >
-                      {user.email}
-                    </Link>
-                  </Typography>
-                </Paper>
-              </Grid>
-            </Grid>
-          ))}
-      </Grid>
+      {store.users &&
+        store.users.map((user, idx) => (
+          <List key={user.email} spacing={2} className={classes.paper}>
+            <ListItemIcon xs={2} className={classes.listItem}>
+              <Avatar alt={user.last_name} src={user.avatar} loading="lazy" />
+            </ListItemIcon>
+
+            <ListItem
+              xs={8}
+              className={classes.listItem}
+              style={{ width: "16rem" }}
+            >
+              <Box {...defaultBoxprops} borderRadius={16} border={2}>
+                <Link
+                  href={`/contacts/${user.email}`}
+                  onClick={handleClick}
+                  style={{ color: "#fff" }}
+                >
+                  {user.email}
+                </Link>
+              </Box>
+            </ListItem>
+          </List>
+        ))}
     </div>
   );
 });

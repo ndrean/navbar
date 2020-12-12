@@ -1,13 +1,11 @@
-import React from "react";
+// import React from "react"; // <- React 17
 import { observer } from "mobx-react-lite";
 
 const Home = observer(({ store }) => {
   return (
     <>
       <div>
-        <h1 style={{ color: "white", fontWeight: "bold" }}>
-          {store.setWelcome}
-        </h1>
+        <h1>{store.setWelcome}</h1>
       </div>
     </>
   );

@@ -78,17 +78,10 @@ const About = observer(({ store }) => {
           align="center"
           color="textPrimary"
           gutterBottom
-          style={{ color: "#fff" }}
         >
           A React app
         </Typography>
-        <Typography
-          variant="h5"
-          align="center"
-          color="textSecondary"
-          paragraph
-          style={{ color: "#fff" }}
-        >
+        <Typography variant="h5" align="center" color="textSecondary" paragraph>
           This page has been visited {store.nb} time(s) and you have{" "}
           {store.nbUsers} contact(s)
         </Typography>
@@ -108,15 +101,12 @@ const About = observer(({ store }) => {
                   // style={{ height: "200px", width: "200px" }}
                 />
                 <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {name}
+                  <Typography gutterBottom variant="h4" component="h2">
+                    <Link href={url} onClick={handleClick}>
+                      {name}
+                    </Link>
                   </Typography>
                 </CardContent>
-                <CardActions>
-                  <Link href={url} onClick={handleClick}>
-                    {name}
-                  </Link>
-                </CardActions>
               </Card>
             </Grid>
           ))}

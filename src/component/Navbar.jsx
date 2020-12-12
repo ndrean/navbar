@@ -5,6 +5,8 @@ import history from "../utils/history";
 
 import SgnButton from "./SgnButton";
 
+import KiteLogo from "../img/kitesurfingLogo.svg";
+
 import {
   AppBar,
   Toolbar,
@@ -21,6 +23,8 @@ import {
   MenuItem,
   Menu,
   Link,
+  Icon,
+  Box,
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -62,7 +66,25 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  imageIcon: {
+    height: "100%",
+  },
+  iconRoot: {
+    textAlign: "center",
+  },
 }));
+
+const defaultBoxProps = {
+  bgcolor: "background.paper",
+  borderColor: "text.primary",
+  m: 1,
+  border: 1,
+  style: { width: "5rem", height: "3rem", backgroundColor: "#3f51b5" },
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  margin: "5px",
+};
 
 const LinkItem = ({ to, handler, text, children }) => {
   return (
@@ -221,7 +243,7 @@ const Navbar = observer(({ store, ...props }) => {
   return (
     <>
       <div className={classes.grow}>
-        <AppBar position="static">
+        <AppBar position="sticky">
           <Toolbar>
             <Button
               edge="start"
@@ -241,15 +263,32 @@ const Navbar = observer(({ store, ...props }) => {
             </Drawer>
 
             <Typography className={classes.title} variant="h6" noWrap>
-              The Downwinder
+              The DownWinder
             </Typography>
-
+            <Typography>
+              <Icon classes={{ root: classes.iconRoot }}>
+                <img
+                  component="img"
+                  alt="logo"
+                  className={classes.imageIcon}
+                  src={KiteLogo}
+                  loading="lazy"
+                  style={{ width: 40 }}
+                />
+              </Icon>
+              {/* <Logo style={{ width: 40 }} /> */}
+              {/* <img alt="logo" src={KiteLogo}  /> */}
+            </Typography>
             <div className={classes.grow}>
-              <Typography className={classes.title} variant="h6" noWrap>
-                <SgnButton store={store} />
-                {/* <Link href="/" onClick={handleMenuClose} color="inherit">
-                  Home
-                </Link> */}
+              <Typography
+                className={classes.title}
+                variant="h6"
+                noWrap
+                style={{ marginLeft: "50px" }}
+              >
+                <Box borderRadius={10} {...defaultBoxProps}>
+                  <SgnButton store={store} style={{ margin: "1px" }} />
+                </Box>
               </Typography>
             </div>
 

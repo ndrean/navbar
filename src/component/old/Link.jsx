@@ -6,8 +6,7 @@ const Link = ({ path, handler, children }) => {
       style={{
         border: "3px solid",
         padding: "5px",
-        backgroundColor: "white",
-        opacity: "0.5",
+        opacity: "0.1",
       }}
     >
       <a href={path} onClick={handler}>
