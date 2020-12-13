@@ -289,7 +289,7 @@ const Navbar = observer(({ store, ...props }) => {
               style={{ marginLeft: "50px" }}
             >
               <Box borderRadius={10} {...defaultBoxProps}>
-                <SgnButton store={store} style={{ margin: "1px" }} />
+                <SgnButton store={store} />
               </Box>
             </Typography>
             <div className={classes.grow}>

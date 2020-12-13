@@ -8,9 +8,11 @@
 2. Finish CRUD on users
 3. Compare with React Router for passing props vs Universal Router - Mobx
 
-## CRA / Config Material-UI to use imports
+## CRA & MAterial-UI config (to use imports)
 
-CRA with updated ServiceWorker: `npx create-react-app my-app --template cra-template-pwa`
+1- CRA with updated ServiceWorker: `npx create-react-app my-app --template cra-template-pwa`
+2-
+Configure **babel** with `yarn add -D babel-plugin-import` and create a `.babelrc.js` file in the root directory of your project. Since we use CRA, we need to run `yarn add -D react-app-rewired customize-cra` to be able to use `.bablerc.js`.
 
 ## Difficult code bugs to remove from Mobx
 
