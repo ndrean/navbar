@@ -33,9 +33,9 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [
   {
-    name: "React",
-    image: imgReact,
-    url: "https://fr.reactjs.org/",
+    name: "Univ-Router",
+    image: imgUR,
+    url: "https://www.kriasoft.com/universal-router/",
   },
   {
     name: "Mobx",
@@ -53,9 +53,9 @@ const cards = [
     url: "https://react-hook-form.com/",
   },
   {
-    name: "Univ-Router",
-    image: imgUR,
-    url: "https://www.kriasoft.com/universal-router/",
+    name: "React",
+    image: imgReact,
+    url: "https://fr.reactjs.org/",
   },
 ];
 

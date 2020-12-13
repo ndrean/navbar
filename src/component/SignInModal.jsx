@@ -42,7 +42,6 @@ const SignInModal = observer(({ store }) => {
     handleSubmit,
     errors,
     // reset,
-    // formState: { isSubmitting, isSubmitSuccessful },
   } = useForm({ mode: "onBlur" });
 
   const onSubmit = action(({ email, password }) => {

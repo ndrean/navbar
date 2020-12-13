@@ -11,13 +11,14 @@ import SignInModal from "./SignInModal.jsx";
 // }
 
 function getModalStyle() {
-  const top = 15; //+ rand();
-  const left = 15; //+ rand();
+  const top = 15; //15; //+ rand();
+  // const left = 5; //+ rand();
 
   return {
     top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
+    margin: "auto",
+    // left: `${left}%`,
+    // transform: `translate(-${top}%, -${left}%)`,
   };
 }
 
@@ -25,11 +26,6 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
     width: 700,
-    // backgroundColor: theme.palette.background.paper,
-    // border: "2px solid #000",
-    // boxShadow: theme.shadows[5],
-    // padding: theme.spacing(2, 4, 3),
-    // backgroundColor: "rgba(0, 0, 0, 0.1)",
   },
 }));
 
@@ -46,6 +42,11 @@ const SimpleModal = ({ open, handleClose, store }) => {
 
   return (
     <Modal
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
       open={open}
       onClose={handleClose}
       aria-labelledby="simple-modal-title"

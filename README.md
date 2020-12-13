@@ -62,6 +62,80 @@ const cards = [
 <CardMedia component="img" image={image} title={`tech: ${name}`} loading="lazy" />
 ```
 
+## Make a phone call
+
+`<a href="tel:60305520">Call me!</a>``
+
+## Take a picture
+
+72x72
+
+- Input:
+
+```js
+import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
+<input type="file" accept="image/*" onClick={()=> setImageFile(e.target.files[0])}/>`
+```
+
+- send to the cloud: direct call Cloudinary REST API
+
+```js
+const formData = new FormData();
+formData.append("file", fileCL);
+formData.append("upload_preset", "ml_default");
+fetch(`https://api.cloudinary.com/v1_1/${props.cloudname}/upload/`,
+  {
+    method: "POST",
+    body: formData,
+  }
+)
+  // CL response will be a SECURE_LINK and a unique ID
+  .then((res) => res.json())
+  .then((resCL) => {
+    console.log(resCL.public_id);
+    console.log(resCL.secure_url);
+```
+
+2- save into the Cloud or host file sytem
+
+3- preview with `URL.createObjectURL()` or with `readAsDataURL`
+
+```js
+<input type="file" accept="image/*" id="inputFile"/>
+<img id="previewElt"/>
+const previewImg = document.getElementById("previewElt")
+const fileElt = document.getElementById("inputFile")
+```
+
+4- save an image into a file with a "fake" `<a>` where we simulate the `click()` and using `new Blob`:
+
+<https://robkendal.co.uk/blog/2020-04-17-saving-text-to-client-side-file-using-vanilla-js>
+
+```js
+const contentType = "image/*"; // or `text/plain" .or "text/html" or...
+const a = document.createElement("a");
+const blob = new Blob([content], { type: contentType });
+a.href = URL.createObjectURL(blob);
+a.download = "filename"; // the name given to the file: to be changed
+a.click(); // simulate the click
+URL.revokeObjectURL(a.href);
+```
+
+OR with `new FileReader()`
+
+```js
+fileElt.addEventListener("change", () => {
+  const file = e.target.files[0];
+  const url = URL.createObjectURL(file);
+  previewImg.scr = url;
+```
+
+4- Resize an image: `canvas` and `readAsDataURL` and `canvasToBlob`
+
+<https://htmldom.dev/resize-an-image/>
+
+4- display
+
 ## Note on Promise.all and useEffect with async
 
 ```js

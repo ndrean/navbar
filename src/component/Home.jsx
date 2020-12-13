@@ -29,6 +29,8 @@ const Home = observer(({ store }) => {
         >
           {store.setWelcome}
         </Typography>
+
+        <Typography>{store.current.email}</Typography>
         <br />
         <hr />
         <br />
@@ -40,8 +42,9 @@ const Home = observer(({ store }) => {
           gutterBottom
           style={{ marginTop: "2rem" }}
         >
-          You can visit the tech stack at the page "About"
+          You can visit the tech stack used at the page "About"
         </Typography>
+        {/* <a href="tel:06.30.55.20.98">06.30.55.20.98</a> */}
       </Container>
     </div>
   );

@@ -28,18 +28,20 @@ import {
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
+
 import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import PeopleAltRoundedIcon from "@material-ui/icons/PeopleAltRounded";
-import VisibilityRoundedIcon from "@material-ui/icons/VisibilityRounded";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import InfoIcon from "@material-ui/icons/Info";
-import LockOpenOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
-// import OpenInNewOutlinedIcon from "@material-ui/icons/OpenInNewOutlined";
-// import SpellcheckOutlinedIcon from "@material-ui/icons/SpellcheckOutlined";
-import ContactsOutlinedIcon from "@material-ui/icons/ContactsOutlined";
-import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
-import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import {
+  AccountCircle,
+  PeopleAltRounded,
+  VisibilityRounded,
+  // More,
+  Info,
+  LockOpenOutlined,
+  ContactsOutlined,
+  ErrorOutline,
+  HomeOutlined,
+} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -49,6 +51,13 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   title: {
+    display: "none",
+    [theme.breakpoints.up("xs")]: {
+      display: "block",
+    },
+    marginRight: theme.spacing(2),
+  },
+  midway: {
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
@@ -119,12 +128,12 @@ const Navbar = observer(({ store, ...props }) => {
             <ListItemIcon>
               {index === 0 && (
                 <LinkItem to="/" handler={handleMenuClose} text={text}>
-                  <HomeOutlinedIcon />
+                  <HomeOutlined />
                 </LinkItem>
               )}
               {index === 1 && (
                 <LinkItem to="/about" handler={handleAbout} text={text}>
-                  <InfoIcon />
+                  <Info />
                 </LinkItem>
               )}
               {index === 2 && (
@@ -133,7 +142,7 @@ const Navbar = observer(({ store, ...props }) => {
                   handler={handleMenuClose}
                   text={text}
                 >
-                  <LockOpenOutlinedIcon />
+                  <LockOpenOutlined />
                 </LinkItem>
               )}
             </ListItemIcon>
@@ -147,12 +156,12 @@ const Navbar = observer(({ store, ...props }) => {
             <ListItemIcon>
               {index === 0 && (
                 <LinkItem to="/contacts" handler={handleMenuClose} text={text}>
-                  <ContactsOutlinedIcon />
+                  <ContactsOutlined />
                 </LinkItem>
               )}
               {index === 1 && (
                 <LinkItem to="/mystere" handler={handleMenuClose} text={text}>
-                  <ErrorOutlineIcon />
+                  <ErrorOutline />
                 </LinkItem>
               )}
             </ListItemIcon>
@@ -221,14 +230,15 @@ const Navbar = observer(({ store, ...props }) => {
       <MenuItem>
         <IconButton aria-label="show number views" color="inherit">
           <Badge badgeContent={store.nb} color="secondary">
-            <VisibilityRoundedIcon />
+            <VisibilityRounded />
           </Badge>
         </IconButton>
+        <p>Views</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show number contacts" color="inherit">
           <Badge badgeContent={store.nbUsers} color="secondary">
-            <PeopleAltRoundedIcon />
+            <PeopleAltRounded />
           </Badge>
         </IconButton>
         <p>Contacts</p>
@@ -269,7 +279,7 @@ const Navbar = observer(({ store, ...props }) => {
               {list(anchor)}
             </Drawer>
 
-            <Typography className={classes.title} variant="h6" noWrap>
+            <Typography className={classes.midway} variant="h6" noWrap>
               The DownWinder
             </Typography>
             <Typography
@@ -303,12 +313,12 @@ const Navbar = observer(({ store, ...props }) => {
             <div className={classes.sectionDesktop}>
               <IconButton aria-label="show number contacts" color="inherit">
                 <Badge badgeContent={store.nbUsers} color="secondary">
-                  <PeopleAltRoundedIcon />
+                  <PeopleAltRounded />
                 </Badge>
               </IconButton>
               <IconButton aria-label="show new views" color="inherit">
                 <Badge badgeContent={store.nb} color="secondary">
-                  <VisibilityRoundedIcon />
+                  <VisibilityRounded />
                 </Badge>
               </IconButton>
               <IconButton

@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 
 import history from "./utils/history";
 import router from "./component/router";
-// import "./App.css";
+import "./App.css";
 // import initFacebookSdk from "./utils/initFacebookSdk";
 
 import { configure } from "mobx";

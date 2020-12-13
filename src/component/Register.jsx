@@ -131,6 +131,31 @@ const SignInForm = observer(({ store }) => {
               {errors.password.message}
             </p>
           )}
+          <TextField
+            inputRef={register({
+              required: { value: true, message: "Required" },
+              minLength: {
+                value: 6,
+                message: "Password should be at-least 6 characters.",
+              },
+            })}
+            margin="normal"
+            required
+            fullWidth
+            name="image"
+            label="Image"
+            type="file"
+            aceept="image/*"
+            id="outlined-image"
+            variant="outlined"
+            autoComplete="current-image"
+          />
+          {errors.image && (
+            <p style={{ color: "red", fontWeight: "bold" }}>
+              {errors.image.message}
+            </p>
+          )}
+
           <FormControlLabel
             control={
               <Controller
