@@ -1,6 +1,6 @@
 // import React from "react";
 import { action } from "mobx";
-
+import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 
 import {
@@ -34,10 +34,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignInModal = ({ store }) => {
+const SignInModal = observer(({ store }) => {
   const { root, paperForm, form, submit } = useStyles();
 
-  console.log("RHF -> Modal");
   const {
     register,
     handleSubmit,
@@ -52,6 +51,7 @@ const SignInModal = ({ store }) => {
       store.addUser({ email: email, name: password });
       store.toggleSgn();
       store.setMsg();
+      store.setCurrent({ email: email, pwd: password });
     }
     store.setModalClose();
   });
@@ -124,6 +124,7 @@ const SignInModal = ({ store }) => {
               variant="contained"
               color="primary"
               className={submit}
+              disabled={store.isSignedIn}
             >
               Sign In
             </Button>
@@ -132,6 +133,6 @@ const SignInModal = ({ store }) => {
       </Grid>
     </Grid>
   );
-};
+});
 
 export default SignInModal;

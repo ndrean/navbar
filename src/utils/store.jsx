@@ -51,6 +51,14 @@ const store = observable({
   getUserEmail: function (idx) {
     if (store.users.length > 0) return store.users[idx].email;
   },
+  current: {},
+  setCurrent: action((data) => {
+    store.current = data;
+  }),
+  rmCurrent: action(function rmUser(user) {
+    store.users = store.users.filter((u) => u.email !== user.email);
+    store.current = {};
+  }),
   getUser: function (email) {
     let result;
     store.users.forEach((user) => {

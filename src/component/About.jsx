@@ -7,7 +7,6 @@ import {
   Card,
   CardMedia,
   CardContent,
-  CardActions,
   Typography,
   Grid,
   Container,
@@ -73,13 +72,14 @@ const About = observer(({ store }) => {
       <CssBaseline />
       <Container maxWidth="sm">
         <Typography
-          component="h1"
-          variant="h2"
+          component="h3"
+          variant="h4"
           align="center"
           color="textPrimary"
           gutterBottom
+          style={{ marginTop: "1rem" }}
         >
-          A React app
+          The tech stack of this React app
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" paragraph>
           This page has been visited {store.nb} time(s) and you have{" "}

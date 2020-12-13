@@ -39,6 +39,7 @@ import LockOpenOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 // import SpellcheckOutlinedIcon from "@material-ui/icons/SpellcheckOutlined";
 import ContactsOutlinedIcon from "@material-ui/icons/ContactsOutlined";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -141,13 +142,20 @@ const Navbar = observer(({ store, ...props }) => {
       </List>
       <Divider />
       <List>
-        {["Contacts"].map((text, index) => (
+        {["Contacts", "Unknow"].map((text, index) => (
           <ListItem button key={text}>
-            {index === 0 && (
-              <LinkItem to="/contacts" handler={handleMenuClose} text={text}>
-                <ContactsOutlinedIcon />
-              </LinkItem>
-            )}
+            <ListItemIcon>
+              {index === 0 && (
+                <LinkItem to="/contacts" handler={handleMenuClose} text={text}>
+                  <ContactsOutlinedIcon />
+                </LinkItem>
+              )}
+              {index === 1 && (
+                <LinkItem to="/mystere" handler={handleMenuClose} text={text}>
+                  <ErrorOutlineIcon />
+                </LinkItem>
+              )}
+            </ListItemIcon>
           </ListItem>
         ))}
       </List>
@@ -216,7 +224,6 @@ const Navbar = observer(({ store, ...props }) => {
             <VisibilityRoundedIcon />
           </Badge>
         </IconButton>
-        {/* <p>Views</p> */}
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show number contacts" color="inherit">
@@ -265,30 +272,30 @@ const Navbar = observer(({ store, ...props }) => {
             <Typography className={classes.title} variant="h6" noWrap>
               The DownWinder
             </Typography>
-            <Typography>
-              <Icon classes={{ root: classes.iconRoot }}>
-                <img
-                  component="img"
-                  alt="logo"
-                  className={classes.imageIcon}
-                  src={KiteLogo}
-                  loading="lazy"
-                  style={{ width: 40 }}
-                />
-              </Icon>
-              {/* <Logo style={{ width: 40 }} /> */}
-              {/* <img alt="logo" src={KiteLogo}  /> */}
+            <Typography
+              className={classes.title}
+              variant="h6"
+              noWrap
+              style={{ marginLeft: "50px" }}
+            >
+              <Box borderRadius={10} {...defaultBoxProps}>
+                <SgnButton store={store} style={{ margin: "1px" }} />
+              </Box>
             </Typography>
             <div className={classes.grow}>
-              <Typography
-                className={classes.title}
-                variant="h6"
-                noWrap
-                style={{ marginLeft: "50px" }}
-              >
-                <Box borderRadius={10} {...defaultBoxProps}>
-                  <SgnButton store={store} style={{ margin: "1px" }} />
-                </Box>
+              <Typography>
+                <Icon classes={{ root: classes.iconRoot }}>
+                  <img
+                    component="img"
+                    alt="logo"
+                    className={classes.imageIcon}
+                    src={KiteLogo}
+                    loading="lazy"
+                    style={{ width: 40 }}
+                  />
+                </Icon>
+                {/* <Logo style={{ width: 40 }} /> */}
+                {/* <img alt="logo" src={KiteLogo}  /> */}
               </Typography>
             </div>
 

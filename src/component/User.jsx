@@ -4,14 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import EditUser from "./EditUser";
 
-import {
-  Grid,
-  Card,
-  CardContent,
-  Typography,
-  CardMedia,
-  Box,
-} from "@material-ui/core";
+import { Grid, Card, CardContent, CardMedia, Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,13 +17,18 @@ const useStyles = makeStyles((theme) => ({
     // width: "100vw",
     // overflow: "hidden",
     backgroundColor: theme.palette.background.default,
+    padding: "1px",
   },
   card: {
     flexBasis: "100%",
     maxWidth: "160px",
     textAlign: "center",
     display: "flex",
-    justifyContent: "center",
+    // justifyContent: "center",
+    justifyContent: "space-around",
+    direction: "column",
+    paddingTop: "1px",
+    paddingBottom: "5px",
   },
   media: {
     height: 140,
@@ -57,10 +55,18 @@ const User = observer(({ store, email }) => {
 
   return (
     <>
-      <Grid container item xs={12} className={classes.root}>
+      <Grid
+        container
+        item
+        xs={12}
+        className={classes.root}
+        style={{ padding: "1px", marginTop: "5px" }}
+      >
         <Card variant="outlined" className={classes.card} xs={12} sm={6}>
           <CardContent>
-            <Box {...defaultBoxprops}>{fullName}</Box>
+            <Box {...defaultBoxprops} borderRadius={16} border={2}>
+              {fullName}
+            </Box>
             {avatar && (
               <CardMedia
                 className={classes.media}

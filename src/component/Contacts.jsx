@@ -8,9 +8,7 @@ import {
   ListItem,
   Box,
   ListItemIcon,
-  Typography,
   Avatar,
-  Paper,
   Link,
 } from "@material-ui/core";
 
@@ -21,7 +19,7 @@ import fetchUsers from "../utils/fetchUsers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
+    width: "100vw",
     backgroundColor: theme.palette.background.paper,
 
     // display: "flex",

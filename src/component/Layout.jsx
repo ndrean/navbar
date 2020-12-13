@@ -13,10 +13,10 @@ const Layout = ({ children }) => {
     // <StateProvider>
     <ThemeProvider theme={darkTheme}>
       <Suspense fallback={<Spinner />}>
-        <div>
+        <>
           <LazyNavbar store={store} />
           {children}
-        </div>
+        </>
       </Suspense>
     </ThemeProvider>
     // </StateProvider>

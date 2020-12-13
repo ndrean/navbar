@@ -12,6 +12,7 @@ import SimpleModal from "./SimpleModal";
 const SgnButton = observer(({ store }) => {
   function handleModalClick() {
     store.setMsg();
+    if (store.isSignedIn) store.rmCurrent(store.current);
     store.isSignedIn ? store.toggleSgn() : store.toggleModal();
   }
 

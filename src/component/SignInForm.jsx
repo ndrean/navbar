@@ -1,5 +1,6 @@
 import * as React from "react";
 import { action } from "mobx";
+import { observer } from "mobx-react-lite";
 
 import {
   Avatar,
@@ -21,9 +22,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useForm, Controller } from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    color: "#FFFFFF",
-  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -35,22 +33,17 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    // backgroundColor: theme.palette.secondary.light,
   },
   form: {
     width: "90%",
     marginTop: theme.spacing(1),
-    // color: theme.palette.primary.main,
-    // backgroundColor: "#fff",
-    // theme.palette.primary.light,
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    // backgroundColor: theme.palette.secondary.dark,
   },
 }));
 
-export default function SignInForm({ store }) {
+const SignInForm = observer(({ store }) => {
   const classes = useStyles();
   const {
     register,
@@ -64,14 +57,13 @@ export default function SignInForm({ store }) {
   const onSubmit = action(({ email, password }) => {
     const emails = Array.from(store.users, ({ email }) => email);
     if (!emails.includes(email)) {
-      store.addUser({ email: email, name: password });
+      store.addUser({ email: email, pwd: password });
       store.toggleSgn();
       store.setMsg();
+      store.setCurrent({ email: email, pwd: password });
     }
     store.setModalClose();
   });
-
-  console.log("RHF -> render form");
 
   return (
     <Container component="main" maxWidth="xs">
@@ -154,6 +146,7 @@ export default function SignInForm({ store }) {
             fullWidth
             variant="contained"
             className={classes.submit}
+            disabled={store.isSignedIn}
           >
             Sign In
           </Button>
@@ -173,4 +166,6 @@ export default function SignInForm({ store }) {
       </div>
     </Container>
   );
-}
+});
+
+export default SignInForm;
