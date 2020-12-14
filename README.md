@@ -4,27 +4,35 @@
 
 ## TODOs
 
-1. Optimize images
-2. Finish CRUD on users
+1. Optimize images / use Cloudinary API to save images without back-end
+2. Finish CRUD on users with dynamic form
 3. Compare with React Router for passing props vs Universal Router - Mobx
 
-## CRA & MAterial-UI config (to use imports)
+## Notes
+
+### CRA & MAterial-UI config (to use imports)
 
 1- CRA with updated ServiceWorker: `npx create-react-app my-app --template cra-template-pwa`
 
 2- Configure **babel** with `yarn add -D babel-plugin-import` and create a `.babelrc.js` file in the root directory of your project. Since we use CRA, we need to run `yarn add -D react-app-rewired customize-cra` to be able to use `.bablerc.js`.
 
-## Difficult code bugs to remove from Mobx
+### Difficulties code bugs to remove from Mobx
 
-"Cannot update a component from inside the function body of a different component."
+1- "Cannot update a component from inside the function body of a different component."
 
-"Cannot update a component (`_c`) while rendering a different component (`_c`)"
+2- "Cannot update a component (`_c`) while rendering a different component (`_c`)"
 
--> put in `useEffect` for one,
+Some recipies:
+
+-> try put in `useEffect` for one,
+
 -> perform action in navbar method calling the component rather than in the component,
+
 -> use `action` on every event method.
 
-## React-hook-forms & Material-UI
+But no solution found for Modal: `(isSubmitSuccessful) store.setModalClose()` <=> pb 2.
+
+### React-hook-forms & Material-UI
 
 - need to register the form fields `TexField` component with `inputRef={register()}`
 
@@ -35,13 +43,15 @@ control={
    <Controller as={Checkbox} control={control}  defaultValue={false} name="remember"/>
 ```
 
-## Insert image in CardMedia - Material-UI from a folder
+### Insert image in CardMedia - Material-UI from a folder
 
-To insert several cards, I mapped an array `cards` and needed to:
+To insert several cards, map an array `cards` as shown in the example. Then needed to:
 
 1. `import...` (Webpack),
 2. use `component="img"`
-3. use `image` tag
+3. use `image` tag <=> `background-image = url("...")`
+
+> Code example
 
 ```js
 import imgReact from "../img/React.png";
@@ -64,11 +74,11 @@ const cards = [
 <CardMedia component="img" image={image} title={`tech: ${name}`} loading="lazy" />
 ```
 
-## Make a phone call
+### Make a phone call
 
-`<a href="tel:60305520">Call me!</a>``
+`<a href="tel:60305520">Call me!</a>`
 
-## Take a picture
+### To implement Cloudinary REST API to save pictures without back-end
 
 72x72
 
@@ -138,7 +148,7 @@ fileElt.addEventListener("change", () => {
 
 4- display
 
-## Note on Promise.all and useEffect with async
+### Note on Promise.all and useEffect with async
 
 ```js
 useEffect(() => {
@@ -153,7 +163,7 @@ useEffect(() => {
 
 <https://javascript.info/promise-api>
 
-## Note on arrays of objects
+### Note on arrays of objects
 
 > replace an object in the array on attribute change
 

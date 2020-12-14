@@ -185,6 +185,11 @@ const Navbar = observer(({ store, ...props }) => {
     handleMenuClose(e);
   }
 
+  function handleLogin(e) {
+    handleMenuClose(e);
+    e.preventDefault();
+    history.push({ pathname: e.currentTarget.pathname });
+  }
   function handleMenuClose(e) {
     setAnchorEl(null);
     setState({ ...state, left: false });
@@ -207,10 +212,10 @@ const Navbar = observer(({ store, ...props }) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem component={Link} href="/signinform" onClick={handleMenuClose}>
+      <MenuItem component={Link} href="/signinform" onClick={handleLogin}>
         Login in
       </MenuItem>
-      <MenuItem component={Link} href="#" onClick={handleMenuClose}>
+      <MenuItem component={Link} href="/t" onClick={handleMenuClose}>
         Sign up
       </MenuItem>
     </Menu>
