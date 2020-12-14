@@ -1,4 +1,4 @@
-# A React app using Mobx, Universal Router, Material-UI, React-Hook-Forms
+# A React app squeleton using Mobx, Universal Router, Material-UI, React-Hook-Forms
 
 <http://rmm.surge.sh/>
 
@@ -11,8 +11,8 @@
 ## CRA & MAterial-UI config (to use imports)
 
 1- CRA with updated ServiceWorker: `npx create-react-app my-app --template cra-template-pwa`
-2-
-Configure **babel** with `yarn add -D babel-plugin-import` and create a `.babelrc.js` file in the root directory of your project. Since we use CRA, we need to run `yarn add -D react-app-rewired customize-cra` to be able to use `.bablerc.js`.
+
+2- Configure **babel** with `yarn add -D babel-plugin-import` and create a `.babelrc.js` file in the root directory of your project. Since we use CRA, we need to run `yarn add -D react-app-rewired customize-cra` to be able to use `.bablerc.js`.
 
 ## Difficult code bugs to remove from Mobx
 
