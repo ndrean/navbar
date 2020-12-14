@@ -4,9 +4,11 @@
 
 ## TODOs
 
+0. rewrite ALL Material-UI imports to double check impact on bundle size
 1. Optimize images / use Cloudinary API to save images without back-end
 2. Finish CRUD on users with dynamic form
-3. Compare with React Router for passing props vs Universal Router - Mobx
+3. Use Suspense/lazy for code splitting
+4. Compare with React Router for passing props vs Universal Router - Mobx
 
 ## Notes
 
