@@ -56,6 +56,14 @@ const store = observable({
   getUserEmail: function (idx) {
     if (store.users.length > 0) return store.users[idx].email;
   },
+  getUserByEmail: function (email) {
+    let result;
+    store.users.forEach((user) => {
+      if (user.email === email) result = user;
+    });
+    return result;
+  },
+  //
   current: {},
   setCurrent: action((data) => {
     store.current = data;
@@ -64,16 +72,11 @@ const store = observable({
     store.users = store.users.filter((u) => u.email !== user.email);
     store.current = {};
   }),
-  getUser: function (email) {
-    let result;
-    store.users.forEach((user) => {
-      if (user.email === email) result = user;
-    });
-    return result;
-    // const emails = Array.from(store.users, ({ email }) => email);
-    // const index = emails.findIndex((elt) => elt === email);
-    // return store.users[index];
-  },
+  //
+  token: "",
+  setToken: action(function ({ token }) {
+    store.token = token;
+  }),
 });
 
 export default store;

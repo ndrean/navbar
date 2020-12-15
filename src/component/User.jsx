@@ -49,7 +49,7 @@ const defaultBoxprops = {
 
 const User = observer(({ store, email }) => {
   const classes = useStyles();
-  const user = store.getUser(email);
+  const user = store.getUserByEmail(email);
   let { first_name, last_name, avatar } = user;
   const fullName = first_name ? first_name + " " + last_name : email;
 

@@ -1,6 +1,6 @@
 # A React app squeleton using Mobx, Universal Router, Material-UI, React-Hook-Forms
 
-> Surge: run the build version with <https://surge.sh/> CLI (it publishes web apps to a CDN with a single command with no setup required).
+> Testing Surge: run the build version with <https://surge.sh/> CLI (it publishes web apps to a CDN with a single command with no setup required).
 
 View the app at: <http://rmm.surge.sh/>
 
@@ -8,9 +8,10 @@ View the app at: <http://rmm.surge.sh/>
 
 0. rewrite ALL Material-UI imports to double check impact on bundle size
 1. Optimize images / use Cloudinary API to save images without back-end
-2. Finish CRUD on users with dynamic form
+2. ~~Finish CRUD on users with dynamic form~~
 3. Use Suspense/lazy for code splitting
-4. Compare with React Router for passing props vs Universal Router - Mobx
+4. Facebook login
+5. Compare with React Router for passing props vs Universal Router - Mobx
 
 ### To view on mobile phone the dev stage
 
@@ -40,11 +41,15 @@ Some recipies:
 
 But no solution found for Modal: `(isSubmitSuccessful) store.setModalClose()` <=> pb 2.
 
-### React-hook-forms & Material-UI
+## React-hook-forms & Material-UI
 
 - need to register the form fields `TexField` component with `inputRef={register()}`
 
 - need to control the form field `Checkbox` component with:
+
+- add inputs "on the fly". Take an array of data and map the indexed form. Note that the name should be something like: `name={`data[${i}].email`}`where `i` is the index of the mapping.
+
+For the checkbox, needed below:
 
 ```js
 control={

@@ -10,7 +10,10 @@ import {
   ListItemIcon,
   Avatar,
   Link,
+  Collapse,
 } from "@material-ui/core";
+
+import { Alert } from "@material-ui/lab";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -18,6 +21,12 @@ import fetchUsers from "../utils/fetchUsers";
 // import User from "./User";
 
 const useStyles = makeStyles((theme) => ({
+  alert: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
   root: {
     width: "100vw",
     backgroundColor: theme.palette.background.paper,
@@ -65,6 +74,24 @@ const defaultBoxprops = {
   margin: "10px",
 };
 
+const ActionAlerts = ({ token }) => {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(true);
+  return (
+    <div className={classes.root}>
+      <Collapse in={open}>
+        <Alert
+          onClose={() => {
+            setOpen(false);
+          }}
+        >
+          New user created! The token is {token}
+        </Alert>
+      </Collapse>
+    </div>
+  );
+};
+
 const Contacts = observer(({ store }) => {
   const classes = useStyles();
 
@@ -85,34 +112,36 @@ const Contacts = observer(({ store }) => {
     e.preventDefault();
     history.push({ pathname: e.currentTarget.pathname });
   };
-
   return (
-    <div className={classes.root}>
-      {store.users &&
-        store.users.map((user, idx) => (
-          <List key={user.email} spacing={2} className={classes.paper}>
-            <ListItemIcon xs={2} className={classes.listItem}>
-              <Avatar alt={user.last_name} src={user.avatar} loading="lazy" />
-            </ListItemIcon>
+    <>
+      <div>{store.token && <ActionAlerts token={store.token} />}</div>
+      <div className={classes.root}>
+        {store.users &&
+          store.users.map((user, idx) => (
+            <List key={user.email} spacing={2} className={classes.paper}>
+              <ListItemIcon xs={2} className={classes.listItem}>
+                <Avatar alt={user.last_name} src={user.avatar} loading="lazy" />
+              </ListItemIcon>
 
-            <ListItem
-              xs={8}
-              className={classes.listItem}
-              style={{ width: "16rem" }}
-            >
-              <Box {...defaultBoxprops} borderRadius={16} border={2}>
-                <Link
-                  href={`/contacts/${user.email}`}
-                  onClick={handleClick}
-                  style={{ color: "#fff" }}
-                >
-                  {user.email}
-                </Link>
-              </Box>
-            </ListItem>
-          </List>
-        ))}
-    </div>
+              <ListItem
+                xs={8}
+                className={classes.listItem}
+                style={{ width: "16rem" }}
+              >
+                <Box {...defaultBoxprops} borderRadius={16} border={2}>
+                  <Link
+                    href={`/contacts/${user.email}`}
+                    onClick={handleClick}
+                    style={{ color: "#fff" }}
+                  >
+                    {user.email}
+                  </Link>
+                </Box>
+              </ListItem>
+            </List>
+          ))}
+      </div>
+    </>
   );
 });
 

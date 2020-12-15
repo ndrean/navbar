@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import { observer } from "mobx-react-lite";
 import { action } from "mobx";
 import history from "../utils/history";
 
@@ -58,6 +59,7 @@ const NewUsersForm = ({ store }) => {
     // formState: { isSubmitting },
   } = useForm({ mode: "onBlur" });
 
+  const formRef = React.useRef(null);
   const [newUsers, setNewUsers] = useState([newUser]);
 
   const addUser = () => {
@@ -65,7 +67,6 @@ const NewUsersForm = ({ store }) => {
   };
 
   const rmUser = (i) => {
-    console.log(i);
     setNewUsers((prev) => {
       console.log(prev, i);
       return prev.filter((_, id) => id !== i);
@@ -74,6 +75,27 @@ const NewUsersForm = ({ store }) => {
 
   const onSubmit = action((data) => {
     store.addUsers(data.users);
+    const fData = new FormData(formRef.current);
+
+    for (const [k, v] of fData.entries()) {
+      console.log(k, v);
+    }
+
+    /* just for this fake API */
+    const userData = { email: "eve.holt@reqres.in", password: "cityslicka" };
+
+    fetch("https://reqres.in/api/login", {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify(userData), // normaly, just pass "fData" AND no headers
+      // !!!!!!!! no header when formdata !!!!!!!
+      headers: new Headers({
+        "Content-type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then(action((token) => store.setToken(token)));
+
     history.push({ pathname: "/contacts" });
   });
 
@@ -86,6 +108,7 @@ const NewUsersForm = ({ store }) => {
           noValidate
           onSubmit={handleSubmit(onSubmit)}
           onReset={reset}
+          ref={formRef}
         >
           <div
             className={classes.flex}
@@ -148,7 +171,7 @@ const NewUsersForm = ({ store }) => {
                     name={`users[${i}].image`}
                     label="Image"
                     type="file"
-                    aceept="image/*"
+                    accept="image/*"
                     id={`image[${i}]`}
                     variant="outlined"
                     autoComplete="current-image"
