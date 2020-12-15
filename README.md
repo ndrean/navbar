@@ -89,10 +89,6 @@ const cards = [
 <CardMedia component="img" image={image} title={`tech: ${name}`} loading="lazy" />
 ```
 
-### Make a phone call
-
-`<a href="tel:60305520">Call me!</a>`
-
 ### To implement Cloudinary REST API to save pictures without back-end
 
 72x72
@@ -163,16 +159,59 @@ fileElt.addEventListener("change", () => {
 
 4- display
 
+## Code notes
+
+### Use formdata with RHF
+
+```js
+const formRef = React.useRef(null)
+
+const data = new FormData(formRef.current)
+fetch("url", {
+  method: "POST",
+  mode: "cors",
+  body: data,
+  }
+})
+<form ... ref={formRef}>
+```
+
+> !!!! NO CONTENT-TYPE ..... !!!!
+
+### Dynamic "on-the-fly" form creation with RHF
+
+If we want to produce a payload like:
+
+```js
+users: [{ email: "", password: ""},...,{ email: "", password: ""}]
+```
+
+then we will use `const [users, setUSers]=React.useState("")` and we use the naming:
+
+```js
+{users.map((_,i)=> {
+  <TextField key={i}
+  ...
+  name={users.[${i}].email}
+  />
+  ...
+})}
+```
+
 ### Note on Promise.all and useEffect with async
+
+We will fetch several pages, so make several calls. Then we will run several `json()` calls. Use `Promise.all`.
 
 ```js
 useEffect(() => {
-  async function fetchData() {
-    // You can await here
-    const response = await MyAPI.getData(someId);
-    // ...
+  async function fetchData(){
+    const urlApi2 = "https://reqres.in/api/users";
+    const requests = [1, 2].map((page) => fetch(`${urlApi2}?page=${page}`));
+    const response = await Promise.all(requests);
+    const users = await Promise.all(response.map((r) => r.json()));
+    return users.flatMap((u) => u.data);
   }
-  fetchData();
+  fetchData().then(....)
 }, []);
 ```
 
@@ -214,7 +253,9 @@ setValues((prev) => {
 });
 ```
 
->
+### Make a phone call
+
+`<a href="tel:60305520">Call me!</a>`
 
 ## Bundle analysis
 
