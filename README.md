@@ -9,9 +9,9 @@ View the app at: <http://rmm.surge.sh/>
 0. ~~All Material-UI imports with rewired/custom-cra~~
 1. Images: use Cloudinary API to save images without back-end
 2. ~~Dynamic form: new-delete dynamic form user~~
-3. ~~Implement fake POST and fake return token
+3. ~~Implement fake POST and fake return token~~
 4. ~~create Alert when user created with token~~
-5. Use Suspense/lazy for code splitting
+5. Continue Suspense/lazy for code splitting
 6. Facebook login
 7. Compare with React Router for passing props vs Universal Router - Mobx
 
