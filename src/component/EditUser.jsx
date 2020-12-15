@@ -51,10 +51,8 @@ const EditUser = observer(({ user }) => {
   };
 
   if (isSubmitSuccessful) {
-    window.alert(`Welcome`);
+    console.log(`Welcome`);
   }
-
-  console.log("React-Hook-Form -> render form");
 
   return (
     <div className={paperForm}>

@@ -54,32 +54,30 @@ const User = observer(({ store, email }) => {
   const fullName = first_name ? first_name + " " + last_name : email;
 
   return (
-    <>
-      <Grid
-        container
-        item
-        xs={12}
-        className={classes.root}
-        style={{ padding: "1px", marginTop: "5px" }}
-      >
-        <Card variant="outlined" className={classes.card} xs={12} sm={6}>
-          <CardContent>
-            <Box {...defaultBoxprops} borderRadius={16} border={2}>
-              {fullName}
-            </Box>
-            {avatar && (
-              <CardMedia
-                className={classes.media}
-                image={avatar}
-                title={last_name}
-                loading="lazy"
-              />
-            )}
-          </CardContent>
-        </Card>
-        <EditUser user={user} store={store} item xs={12} sm={6} />
-      </Grid>
-    </>
+    <Grid
+      container
+      item
+      xs={12}
+      className={classes.root}
+      style={{ padding: "1px", marginTop: "5px" }}
+    >
+      <Card variant="outlined" className={classes.card} xs={12} sm={6}>
+        <CardContent>
+          <Box {...defaultBoxprops} borderRadius={16} border={2}>
+            {fullName}
+          </Box>
+          {avatar && (
+            <CardMedia
+              className={classes.media}
+              image={avatar}
+              title={last_name}
+              loading="lazy"
+            />
+          )}
+        </CardContent>
+      </Card>
+      <EditUser user={user} store={store} item xs={12} sm={6} />
+    </Grid>
   );
 });
 
