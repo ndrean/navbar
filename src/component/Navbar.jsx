@@ -39,7 +39,7 @@ import {
   Info,
   LockOpenOutlined,
   ContactsOutlined,
-  ErrorOutline,
+  // ErrorOutline,
   HomeOutlined,
 } from "@material-ui/icons";
 

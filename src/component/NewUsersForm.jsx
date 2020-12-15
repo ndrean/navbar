@@ -187,7 +187,6 @@ const NewUsersForm = observer(({ store }) => {
               variant="contained"
               color="primary"
               className={classes.submit}
-              disabled={store.isSignedIn}
             >
               Save users
             </Button>

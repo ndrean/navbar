@@ -45,7 +45,11 @@ const store = observable({
   addUser: action(function addUser(data) {
     store.users.push(data);
   }),
-  addUsers: action((data) => (store.users = [...store.users, ...data])),
+  addUsers: action((data) => {
+    const emails = Array.from(store.users, ({ email }) => email);
+    const newdata = data.filter((user) => !emails.includes(user.email));
+    return (store.users = [...store.users, ...newdata]);
+  }),
   get nbUsers() {
     return store.users.length;
   },
