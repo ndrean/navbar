@@ -1,6 +1,8 @@
 # A React app squeleton using Mobx, Universal Router, Material-UI, React-Hook-Forms
 
-<http://rmm.surge.sh/>
+> Surge: run the build version with <https://surge.sh/> CLI (it publishes web apps to a CDN with a single command with no setup required).
+
+View the app at: <http://rmm.surge.sh/>
 
 ## TODOs
 
@@ -10,13 +12,17 @@
 3. Use Suspense/lazy for code splitting
 4. Compare with React Router for passing props vs Universal Router - Mobx
 
+### To view on mobile phone the dev stage
+
+`http-server ./build -a 0.0.0.0 -p 8090` and open **192.168.0.41:8090**
+
 ## Notes
 
 ### CRA & MAterial-UI config (to use imports)
 
 1- CRA with updated ServiceWorker: `npx create-react-app my-app --template cra-template-pwa`
 
-2- Configure **babel** with `yarn add -D babel-plugin-import` and create a `.babelrc.js` file in the root directory of your project. Since we use CRA, we need to run `yarn add -D react-app-rewired customize-cra` to be able to use `.bablerc.js`.
+2- Configure **babel** with `babel-plugin-import`, create a `.babelrc.js` file in the root directory of your project. Since we use CRA, we need `react-app-rewired` and `customize-cra` to be able to use `.babelrc.js`.
 
 ### Difficulties code bugs to remove from Mobx
 

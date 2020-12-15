@@ -35,7 +35,7 @@ import {
   AccountCircle,
   PeopleAltRounded,
   VisibilityRounded,
-  // More,
+  Contacts,
   Info,
   LockOpenOutlined,
   ContactsOutlined,
@@ -45,7 +45,7 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    width: 200,
+    width: 250,
   },
   grow: {
     flexGrow: 1,
@@ -151,7 +151,7 @@ const Navbar = observer(({ store, ...props }) => {
       </List>
       <Divider />
       <List>
-        {["Contacts", "Unknow"].map((text, index) => (
+        {["Contacts", "Add Contact"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index === 0 && (
@@ -160,8 +160,8 @@ const Navbar = observer(({ store, ...props }) => {
                 </LinkItem>
               )}
               {index === 1 && (
-                <LinkItem to="/mystere" handler={handleMenuClose} text={text}>
-                  <ErrorOutline />
+                <LinkItem to="/addusers" handler={handleMenuClose} text={text}>
+                  <Contacts />
                 </LinkItem>
               )}
             </ListItemIcon>

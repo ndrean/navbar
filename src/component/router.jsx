@@ -8,8 +8,10 @@ import Spinner from "./Spinner";
 import About from "./About";
 import Contacts from "./Contacts";
 import Home from "./Home";
+
 // import Form from "./Form";
 import User from "./User";
+import NewUsersForm from "./NewUsersForm";
 import SignInForm from "./SignInForm";
 const LazyLayout = lazy(() => import("./Layout"));
 
@@ -49,12 +51,12 @@ export default new UniversalRouter([
           return <SignInForm store={store} />;
         },
       },
-      // {
-      //   path: "/form",
-      //   async action() {
-      //     return <Form store={store} />;
-      //   },
-      // },
+      {
+        path: "/addusers",
+        async action() {
+          return <NewUsersForm store={store} />;
+        },
+      },
       {
         path: "/contacts",
         children: [

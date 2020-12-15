@@ -17,14 +17,13 @@
     "react-hook-form": "^6.12.2",
     "react-scripts": "4.0.1",
     "source-map-explorer": "^2.5.1",
-    "static-server": "^2.2.1",
     "universal-router": "^9.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-app-rewired start",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

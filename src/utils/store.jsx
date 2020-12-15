@@ -45,6 +45,7 @@ const store = observable({
   addUser: action(function addUser(data) {
     store.users.push(data);
   }),
+  addUsers: action((data) => (store.users = [...store.users, ...data])),
   get nbUsers() {
     return store.users.length;
   },
