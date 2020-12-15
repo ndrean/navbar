@@ -3,19 +3,19 @@
     "static/js/0.14dbbc45.chunk.js": "/ndrean/navbar/static/js/0.14dbbc45.chunk.js",
     "static/js/0.14dbbc45.chunk.js.map": "/ndrean/navbar/static/js/0.14dbbc45.chunk.js.map",
     "main.css": "/ndrean/navbar/static/css/main.ceb309b2.chunk.css",
-    "main.js": "/ndrean/navbar/static/js/main.9864506e.chunk.js",
-    "main.js.map": "/ndrean/navbar/static/js/main.9864506e.chunk.js.map",
-    "runtime-main.js": "/ndrean/navbar/static/js/runtime-main.0f55c1f4.js",
-    "runtime-main.js.map": "/ndrean/navbar/static/js/runtime-main.0f55c1f4.js.map",
-    "static/js/3.25c9498c.chunk.js": "/ndrean/navbar/static/js/3.25c9498c.chunk.js",
-    "static/js/3.25c9498c.chunk.js.map": "/ndrean/navbar/static/js/3.25c9498c.chunk.js.map",
+    "main.js": "/ndrean/navbar/static/js/main.ed8ab91a.chunk.js",
+    "main.js.map": "/ndrean/navbar/static/js/main.ed8ab91a.chunk.js.map",
+    "runtime-main.js": "/ndrean/navbar/static/js/runtime-main.60bae2d4.js",
+    "runtime-main.js.map": "/ndrean/navbar/static/js/runtime-main.60bae2d4.js.map",
+    "static/js/3.98f9597c.chunk.js": "/ndrean/navbar/static/js/3.98f9597c.chunk.js",
+    "static/js/3.98f9597c.chunk.js.map": "/ndrean/navbar/static/js/3.98f9597c.chunk.js.map",
     "static/js/4.5e03cc2a.chunk.js": "/ndrean/navbar/static/js/4.5e03cc2a.chunk.js",
     "static/js/4.5e03cc2a.chunk.js.map": "/ndrean/navbar/static/js/4.5e03cc2a.chunk.js.map",
-    "static/js/5.43f08a2e.chunk.js": "/ndrean/navbar/static/js/5.43f08a2e.chunk.js",
-    "static/js/5.43f08a2e.chunk.js.map": "/ndrean/navbar/static/js/5.43f08a2e.chunk.js.map",
+    "static/js/5.16bdba19.chunk.js": "/ndrean/navbar/static/js/5.16bdba19.chunk.js",
+    "static/js/5.16bdba19.chunk.js.map": "/ndrean/navbar/static/js/5.16bdba19.chunk.js.map",
     "index.html": "/ndrean/navbar/index.html",
     "static/css/main.ceb309b2.chunk.css.map": "/ndrean/navbar/static/css/main.ceb309b2.chunk.css.map",
-    "static/js/3.25c9498c.chunk.js.LICENSE.txt": "/ndrean/navbar/static/js/3.25c9498c.chunk.js.LICENSE.txt",
+    "static/js/3.98f9597c.chunk.js.LICENSE.txt": "/ndrean/navbar/static/js/3.98f9597c.chunk.js.LICENSE.txt",
     "static/media/404.8b1d91e2.jpg": "/ndrean/navbar/static/media/404.8b1d91e2.jpg",
     "static/media/Material-ui.1eac20fe.webp": "/ndrean/navbar/static/media/Material-ui.1eac20fe.webp",
     "static/media/Mobx.3830361d.webp": "/ndrean/navbar/static/media/Mobx.3830361d.webp",
@@ -25,9 +25,9 @@
     "static/media/kitesurfingLogo.e1fb1667.svg": "/ndrean/navbar/static/media/kitesurfingLogo.e1fb1667.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.0f55c1f4.js",
-    "static/js/3.25c9498c.chunk.js",
+    "static/js/runtime-main.60bae2d4.js",
+    "static/js/3.98f9597c.chunk.js",
     "static/css/main.ceb309b2.chunk.css",
-    "static/js/main.9864506e.chunk.js"
+    "static/js/main.ed8ab91a.chunk.js"
   ]
 }
