@@ -1,4 +1,4 @@
-# A React app squeleton using Mobx, Universal Router, Material-UI, React-Hook-Forms
+# A React app skeleton using Mobx, Universal Router, Material-UI, React-Hook-Forms
 
 > Testing Surge: run the build version with <https://surge.sh/> CLI (it publishes web apps to a CDN with a single command with no setup required).
 
