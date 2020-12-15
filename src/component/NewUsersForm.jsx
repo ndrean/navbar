@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { action } from "mobx";
-import { observer } from "mobx-react-lite";
 import history from "../utils/history";
 
 import {
@@ -48,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewUsersForm = observer(({ store }) => {
+const NewUsersForm = ({ store }) => {
   const classes = useStyles();
   const newUser = { email: "", pwd: "" };
   const {
@@ -74,7 +73,6 @@ const NewUsersForm = observer(({ store }) => {
   };
 
   const onSubmit = action((data) => {
-    console.log(data.users);
     store.addUsers(data.users);
     history.push({ pathname: "/contacts" });
   });
@@ -195,6 +193,6 @@ const NewUsersForm = observer(({ store }) => {
       </div>
     </Container>
   );
-});
+};
 
 export default NewUsersForm;
