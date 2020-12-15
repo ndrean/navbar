@@ -6,12 +6,14 @@ View the app at: <http://rmm.surge.sh/>
 
 ## TODOs
 
-0. rewrite ALL Material-UI imports to double check impact on bundle size
-1. Optimize images / use Cloudinary API to save images without back-end
-2. ~~Finish CRUD on users with dynamic form~~
-3. Use Suspense/lazy for code splitting
-4. Facebook login
-5. Compare with React Router for passing props vs Universal Router - Mobx
+0. ~~All Material-UI imports with rewired/custom-cra~~
+1. Images: use Cloudinary API to save images without back-end
+2. ~~Dynamic form: new-delete dynamic form user~~
+3. ~~Implement fake POST and fake return token
+4. ~~create Alert when user created with token~~
+5. Use Suspense/lazy for code splitting
+6. Facebook login
+7. Compare with React Router for passing props vs Universal Router - Mobx
 
 ### To view on mobile phone the dev stage
 
