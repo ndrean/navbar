@@ -1,31 +1,48 @@
 # A React app skeleton using Mobx, Universal Router, Material-UI, React-Hook-Forms
 
-> Testing Surge: run the build version with <https://surge.sh/> CLI (it publishes web apps to a CDN with a single command with no setup required).
+## Deploy
 
-View the app at: <http://rmm.surge.sh/>
+### Surge:
+
+Surge publishes static web apps to a CDN with a single command. Install the **surge cli** (<https://surge.sh/>), run `yarn build`, then `cd /build` and `surge`: name it and view the app at: <http://rmm.surge.sh/>
+
+### Github pages
+
+Install `yarn add gh-pages --dev`, then add to "package.json":
+
+```js
+"homepage": "https://ndrean.github.io/navbar",
+...
+"scripts": {
+  "predeploy": "yarn build",
+  "deploy": "gh-pages -d build"
+}
+```
+
+and run `yarn deploy`.
 
 ## TODOs
 
 0. ~~All Material-UI imports with rewired/custom-cra~~
-1. Images: use Cloudinary API to save images without back-end
-2. ~~Dynamic form: new-delete dynamic form user~~
-3. ~~Implement fake POST and fake return token~~
-4. ~~create Alert when user created with token~~
-5. Continue Suspense/lazy for code splitting
-6. Facebook login
-7. Compare with React Router for passing props vs Universal Router - Mobx
+1. ~~Modal for sign-in~~
+2. ~~dynamic badges in navbar~~
+3. ~~Mobil format of navbar~~
+4. ~ñavigation with drawer~~
+5. Images: use Cloudinary API to save images without back-end
+6. ~~Dynamic form: new-delete dynamic form user~~
+7. ~~Implement fake POST and fake return token~~
+8. ~~create Alert when user created with token~~
+9. Continue Suspense/lazy for code splitting
+10. Facebook login
+11. Compare with React Router for passing props vs Universal Router - Mobx
 
-### To view on mobile phone the dev stage
-
-`http-server ./build -a 0.0.0.0 -p 8090` and open **192.168.0.41:8090**
-
-## Notes
-
-### CRA & MAterial-UI config (to use imports)
+## CRA & Material-UI config (to use imports)
 
 1- CRA with updated ServiceWorker: `npx create-react-app my-app --template cra-template-pwa`
 
 2- Configure **babel** with `babel-plugin-import`, create a `.babelrc.js` file in the root directory of your project. Since we use CRA, we need `react-app-rewired` and `customize-cra` to be able to use `.babelrc.js`.
+
+## Notes
 
 ### Difficulties code bugs to remove from Mobx
 
@@ -161,6 +178,10 @@ fileElt.addEventListener("change", () => {
 
 ## Code notes
 
+### To view on mobile phone the dev stage
+
+`http-server ./build -a 0.0.0.0 -p 8090` and open **192.168.0.41:8090**
+
 ### Use formdata with RHF
 
 ```js
@@ -192,7 +213,7 @@ then we will use `const [users, setUSers]=React.useState("")` and we use the nam
 {users.map((_,i)=> {
   <TextField key={i}
   ...
-  name={users.[${i}].email}
+  name={users[${i}].email}
   />
   ...
 })}
