@@ -14,7 +14,8 @@ import {
 } from "@material-ui/core";
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+// import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -68,7 +69,6 @@ const NewUsersForm = ({ store }) => {
 
   const rmUser = (i) => {
     setNewUsers((prev) => {
-      console.log(prev, i);
       return prev.filter((_, id) => id !== i);
     });
   };
@@ -76,14 +76,13 @@ const NewUsersForm = ({ store }) => {
   const onSubmit = action((data) => {
     store.addUsers(data.users);
     const fData = new FormData(formRef.current);
-
+    const pictures = [];
     for (const [k, v] of fData.entries()) {
-      console.log(k, v);
+      if (RegExp("image").test(k)) pictures.push(v);
     }
 
     /* just for this fake API */
     const userData = { email: "eve.holt@reqres.in", password: "cityslicka" };
-
     fetch("https://reqres.in/api/login", {
       method: "POST",
       mode: "cors",
@@ -95,6 +94,7 @@ const NewUsersForm = ({ store }) => {
     })
       .then((res) => res.json())
       .then(action((token) => store.setToken(token)));
+    /* end fake api */
 
     history.push({ pathname: "/contacts" });
   });
@@ -165,20 +165,34 @@ const NewUsersForm = ({ store }) => {
                   </p>
                 }
                 <div className={classes.flex}>
-                  <TextField
-                    inputRef={register()}
-                    margin="normal"
-                    name={`users[${i}].image`}
-                    label="Image"
-                    type="file"
-                    accept="image/*"
-                    id={`image[${i}]`}
-                    variant="outlined"
-                    autoComplete="current-image"
-                  />
-                  <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                  </Avatar>
+                  <Tooltip title="Take a picture">
+                    <label htmlFor={`image[${i}]`}>
+                      <input
+                        style={{ display: "none" }}
+                        id={`image[${i}]`}
+                        name={`users[${i}].image`}
+                        type="file"
+                        accept="image/*"
+                        ref={register()}
+                      />
+
+                      <Avatar className={classes.avatar}>
+                        <AddAPhotoOutlinedIcon />
+                      </Avatar>
+                      {/* <TextField
+                        inputRef={register()}
+                        margin="normal"
+                        name={`users[${i}].image`}
+                        label="Image"
+                        type="file"
+                        accept="image/*"
+                        id={`image[${i}]`}
+                        variant="outlined"
+                        autoComplete="current-image"
+                      /> */}
+                    </label>
+                  </Tooltip>
+
                   <Tooltip title="Delete">
                     <IconButton
                       aria-label="remove contact"

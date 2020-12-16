@@ -2,6 +2,8 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { makeStyles } from "@material-ui/core/styles";
 
+// import { Image } from "cloudinary-react";
+
 import EditUser from "./EditUser";
 
 import { Grid, Card, CardContent, CardMedia, Box } from "@material-ui/core";
@@ -67,12 +69,20 @@ const User = observer(({ store, email }) => {
             {fullName}
           </Box>
           {avatar && (
-            <CardMedia
-              className={classes.media}
-              image={avatar}
-              title={last_name}
-              loading="lazy"
-            />
+            <>
+              <CardMedia
+                className={classes.media}
+                image={avatar}
+                title={last_name}
+                loading="lazy"
+              />
+              {/* <Image
+                cloudName="dd4eq9e3c"
+                publicId="sample"
+                width="72"
+                crop="scale"
+              /> */}
+            </>
           )}
         </CardContent>
       </Card>
