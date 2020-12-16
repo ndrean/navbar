@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import { observer } from "mobx-react-lite";
 import { action } from "mobx";
+import { useForm } from "react-hook-form";
 import history from "../utils/history";
 
 import {
@@ -18,8 +19,6 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
 
 import { makeStyles } from "@material-ui/core/styles";
-
-import { useForm } from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -84,13 +83,17 @@ const NewUsersForm = ({ store }) => {
     /* just for this fake API */
     const userData = { email: "eve.holt@reqres.in", password: "cityslicka" };
     fetch("https://reqres.in/api/login", {
-      method: "POST",
-      mode: "cors",
-      body: JSON.stringify(userData), // normaly, just pass "fData" AND no headers
-      // !!!!!!!! no header when formdata !!!!!!!
-      headers: new Headers({
-        "Content-type": "application/json",
-      }),
+      ...{
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify(userData), // normaly, just pass "fData" AND no headers
+        // !!!!!!!! no header when formdata !!!!!!!
+        headers: {
+          ...{
+            "Content-type": "application/json",
+          },
+        },
+      },
     })
       .then((res) => res.json())
       .then(action((token) => store.setToken(token)));

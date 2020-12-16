@@ -17,8 +17,7 @@ import { Alert } from "@material-ui/lab";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import fetchUsers from "../utils/fetchUsers";
-// import User from "./User";
+// import fetchUsers from "../utils/fetchUsers";
 
 const useStyles = makeStyles((theme) => ({
   alert: {
@@ -30,12 +29,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100vw",
     backgroundColor: theme.palette.background.paper,
-
-    // display: "flex",
-    // flexWrap: "wrap",
-    // justifyContent: "space-around",
-    // overflow: "hidden",
-    // backgroundColor: theme.palette.background.paper,
   },
   paper: {
     // padding: theme.spacing(5),
@@ -51,9 +44,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    // width: "40px",
-    // flexWrap: "wrap",
-    // transform: "translateZ(0)",
   },
 }));
 
@@ -96,16 +86,16 @@ const Contacts = observer(({ store }) => {
   const classes = useStyles();
 
   useEffect(() => {
-    fetchUsers().then(
-      action(async function storeUsers(result) {
-        const emails = Array.from(store.users, ({ email }) => email);
-        for (const user of result) {
-          if (!emails.includes(user.email)) {
-            store.addUser(user);
-          }
+    // fetchUsers().then(
+    action(async function storeUsers(result) {
+      const emails = Array.from(store.users, ({ email }) => email);
+      for (const user of result) {
+        if (!emails.includes(user.email)) {
+          store.addUser(user);
         }
-      })
-    );
+      }
+    });
+    // );
   }, [store]);
 
   const handleClick = (e) => {

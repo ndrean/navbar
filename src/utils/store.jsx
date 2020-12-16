@@ -48,7 +48,7 @@ const store = observable({
   addUsers: action((data) => {
     const emails = Array.from(store.users, ({ email }) => email);
     const newdata = data.filter((user) => !emails.includes(user.email));
-    return (store.users = [...store.users, ...newdata]);
+    return (store.users = [...store.users, ...newdata]); // concate 2 arrays -> 2 spread
   }),
   get nbUsers() {
     return store.users.length;

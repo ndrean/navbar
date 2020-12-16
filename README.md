@@ -27,7 +27,7 @@ and run `yarn deploy`.
 1. ~~Modal for sign-in~~
 2. ~~dynamic badges in navbar~~
 3. ~~Mobil format of navbar~~
-4. ~ñavigation with drawer~~
+4. ~~navigation with drawer~~
 5. Images: use Cloudinary API to save images without back-end
 6. ~~Dynamic form: new-delete dynamic form user~~
 7. ~~Implement fake POST and fake return token~~

@@ -1,6 +1,6 @@
 {
   "name": "navbar",
-  "homepage": "https://ndrean.github.io/navbar",
+  
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -28,9 +28,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
+    
   },
   "eslintConfig": {
     "extends": [

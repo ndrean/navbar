@@ -2,6 +2,8 @@ import React, { Suspense, lazy } from "react";
 import UniversalRouter from "universal-router";
 // or cdn <=> window.UniversalRouter
 
+import { action } from "mobx";
+import fetchUsers from "../utils/fetchUsers";
 import store from "../utils/store";
 
 import Spinner from "./Spinner";
@@ -62,7 +64,9 @@ export default new UniversalRouter([
         children: [
           {
             path: "",
+            // action from Universal Router
             async action() {
+              fetchUsers().then(action((res) => store.addUsers(res))); //action from Mobx
               return <Contacts store={store} />;
             },
           },
