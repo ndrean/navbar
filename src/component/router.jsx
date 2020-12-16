@@ -7,15 +7,15 @@ import fetchUsers from "../utils/fetchUsers";
 import store from "../utils/store";
 
 import Spinner from "./Spinner";
-import About from "./About";
-import Contacts from "./Contacts";
-import Home from "./Home";
+const spin = () => <Spinner />;
 
-// import Form from "./Form";
-import User from "./User";
-import NewUsersForm from "./NewUsersForm";
-import SignInForm from "./SignInForm";
 const LazyLayout = lazy(() => import("./Layout"));
+const LazyHome = lazy(() => import("./Home"));
+const LazyAbout = lazy(() => import("./About"));
+const LazySignInForm = lazy(() => import("./SignInForm"));
+const LazyNewUsersForm = lazy(() => import("./NewUsersForm"));
+const LazyUser = lazy(() => import("./User"));
+const LazyContacts = lazy(() => import("./Contacts"));
 
 export default new UniversalRouter([
   {
@@ -38,25 +38,44 @@ export default new UniversalRouter([
           let home2 = await Promise.resolve(import("./Home2"));
           return home2({ store: store });
           */
-          return <Home store={store} />;
+          return (
+            <Suspense fallback={spin()}>
+              <LazyHome store={store} />;
+            </Suspense>
+          );
         },
       },
       {
         path: "/about",
         async action() {
-          return <About store={store} />;
+          return (
+            <Suspense fallback={spin()}>
+              <LazyAbout store={store} />;
+            </Suspense>
+          );
+          //  <About store={store} />;
         },
       },
       {
         path: "/signinform",
         async action() {
-          return <SignInForm store={store} />;
+          return (
+            <Suspense fallback={spin()}>
+              <LazySignInForm store={store} />;
+            </Suspense>
+          );
+          // <SignInForm store={store} />;
         },
       },
       {
         path: "/addusers",
         async action() {
-          return <NewUsersForm store={store} />;
+          return (
+            <Suspense fallback={spin()}>
+              <LazyNewUsersForm store={store} />;
+            </Suspense>
+          );
+          // <NewUsersForm store={store} />;
         },
       },
       {
@@ -67,14 +86,24 @@ export default new UniversalRouter([
             // action from Universal Router
             async action() {
               fetchUsers().then(action((res) => store.addUsers(res))); //action from Mobx
-              return <Contacts store={store} />;
+              return (
+                <Suspense fallback={spin()}>
+                  <LazyContacts store={store} />;
+                </Suspense>
+              );
+              //  <Contacts store={store} />;
             },
           },
           {
             path: "/:email",
             async action(context) {
               const email = context.params.email;
-              return <User email={email} store={store} />;
+              return (
+                <Suspense fallback={spin()}>
+                  <LazyUser email={email} store={store} />;
+                </Suspense>
+              );
+              //  <User email={email} store={store} />;
             },
           },
         ],

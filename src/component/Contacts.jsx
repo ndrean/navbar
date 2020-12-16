@@ -87,7 +87,7 @@ const Contacts = observer(({ store }) => {
 
   useEffect(() => {
     // fetchUsers().then(
-    action(async function storeUsers(result) {
+    action(async (result) => {
       const emails = Array.from(store.users, ({ email }) => email);
       for (const user of result) {
         if (!emails.includes(user.email)) {
