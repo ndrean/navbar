@@ -3,19 +3,19 @@
     "static/js/0.bb245e4c.chunk.js": "/navbar/static/js/0.bb245e4c.chunk.js",
     "static/js/0.bb245e4c.chunk.js.map": "/navbar/static/js/0.bb245e4c.chunk.js.map",
     "main.css": "/navbar/static/css/main.ceb309b2.chunk.css",
-    "main.js": "/navbar/static/js/main.b0c6f7fb.chunk.js",
-    "main.js.map": "/navbar/static/js/main.b0c6f7fb.chunk.js.map",
-    "runtime-main.js": "/navbar/static/js/runtime-main.d78f1726.js",
-    "runtime-main.js.map": "/navbar/static/js/runtime-main.d78f1726.js.map",
-    "static/js/3.eb623568.chunk.js": "/navbar/static/js/3.eb623568.chunk.js",
-    "static/js/3.eb623568.chunk.js.map": "/navbar/static/js/3.eb623568.chunk.js.map",
+    "main.js": "/navbar/static/js/main.2fd08f96.chunk.js",
+    "main.js.map": "/navbar/static/js/main.2fd08f96.chunk.js.map",
+    "runtime-main.js": "/navbar/static/js/runtime-main.80b335e8.js",
+    "runtime-main.js.map": "/navbar/static/js/runtime-main.80b335e8.js.map",
+    "static/js/3.e6944673.chunk.js": "/navbar/static/js/3.e6944673.chunk.js",
+    "static/js/3.e6944673.chunk.js.map": "/navbar/static/js/3.e6944673.chunk.js.map",
     "static/js/4.1f386058.chunk.js": "/navbar/static/js/4.1f386058.chunk.js",
     "static/js/4.1f386058.chunk.js.map": "/navbar/static/js/4.1f386058.chunk.js.map",
-    "static/js/5.c61e5536.chunk.js": "/navbar/static/js/5.c61e5536.chunk.js",
-    "static/js/5.c61e5536.chunk.js.map": "/navbar/static/js/5.c61e5536.chunk.js.map",
+    "static/js/5.254fdf0d.chunk.js": "/navbar/static/js/5.254fdf0d.chunk.js",
+    "static/js/5.254fdf0d.chunk.js.map": "/navbar/static/js/5.254fdf0d.chunk.js.map",
     "index.html": "/navbar/index.html",
     "static/css/main.ceb309b2.chunk.css.map": "/navbar/static/css/main.ceb309b2.chunk.css.map",
-    "static/js/3.eb623568.chunk.js.LICENSE.txt": "/navbar/static/js/3.eb623568.chunk.js.LICENSE.txt",
+    "static/js/3.e6944673.chunk.js.LICENSE.txt": "/navbar/static/js/3.e6944673.chunk.js.LICENSE.txt",
     "static/media/404.8b1d91e2.jpg": "/navbar/static/media/404.8b1d91e2.jpg",
     "static/media/Material-ui.1eac20fe.webp": "/navbar/static/media/Material-ui.1eac20fe.webp",
     "static/media/Mobx.3830361d.webp": "/navbar/static/media/Mobx.3830361d.webp",
@@ -25,9 +25,9 @@
     "static/media/kitesurfingLogo.e1fb1667.svg": "/navbar/static/media/kitesurfingLogo.e1fb1667.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d78f1726.js",
-    "static/js/3.eb623568.chunk.js",
+    "static/js/runtime-main.80b335e8.js",
+    "static/js/3.e6944673.chunk.js",
     "static/css/main.ceb309b2.chunk.css",
-    "static/js/main.b0c6f7fb.chunk.js"
+    "static/js/main.2fd08f96.chunk.js"
   ]
 }
