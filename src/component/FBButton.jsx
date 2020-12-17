@@ -38,6 +38,7 @@ const FBButton = observer(() => {
   const FBLogin = action(async () => {
     window.FB.getLoginStatus(
       action(async (response) => {
+        const token = response?.authResponse?.accesToken;
         if (!response.authResponse) {
           window.FB.login(
             (response) => {
@@ -55,7 +56,7 @@ const FBButton = observer(() => {
               store.setCurrent({
                 name: response.name,
                 email: response.email,
-                pwd: response.authResponse.accessToken,
+                pwd: token,
                 signed: true,
                 fb: true,
               });

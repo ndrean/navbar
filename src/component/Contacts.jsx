@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { observer } from "mobx-react-lite";
 import { action } from "mobx";
 import history from "../utils/history";
@@ -10,22 +10,24 @@ import {
   ListItemIcon,
   Avatar,
   Link,
-  Collapse,
+  // Collapse,
 } from "@material-ui/core";
 
-import { Alert } from "@material-ui/lab";
+// import { Alert } from "@material-ui/lab";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 // import fetchUsers from "../utils/fetchUsers";
 
+const LazyAlert = lazy(() => import("./ActionAlerts"));
+
 const useStyles = makeStyles((theme) => ({
-  alert: {
+  /*alert: {
     width: "100%",
     "& > * + *": {
       marginTop: theme.spacing(2),
     },
-  },
+  },*/
   root: {
     width: "100vw",
     backgroundColor: theme.palette.background.paper,
@@ -64,6 +66,7 @@ const defaultBoxprops = {
   margin: "10px",
 };
 
+/*
 const ActionAlerts = ({ token }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -81,7 +84,7 @@ const ActionAlerts = ({ token }) => {
     </div>
   );
 };
-
+*/
 const Contacts = observer(({ store }) => {
   const classes = useStyles();
 
@@ -105,7 +108,13 @@ const Contacts = observer(({ store }) => {
 
   return (
     <>
-      <div>{store.token && <ActionAlerts token={store.token} />}</div>
+      <div>
+        {store.token && (
+          <Suspense>
+            <LazyAlert token={store.token} />
+          </Suspense>
+        )}
+      </div>
       <div className={classes.root}>
         {store.users &&
           store.users.map((user, idx) => (

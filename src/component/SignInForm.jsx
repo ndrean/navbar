@@ -27,6 +27,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useForm, Controller } from "react-hook-form";
 
 const LazyFBConnect = lazy(() => import("./FBConnect"));
+const LazyAlert = lazy(() => import("./ActionAlerts"));
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -71,113 +72,116 @@ const SignInForm = observer(({ store }) => {
   if (isSubmitSuccessful) history.push({ pathname: "/" });
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+    <Suspense>
+      {store?.current?.pwd && <LazyAlert token={store?.current?.pwd} />}
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
 
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <br />
-        <Container>
-          <Suspense>
-            <LazyFBConnect />
-          </Suspense>
-        </Container>
-        <br />
-        <Container>
-          <DividerWithText>or</DividerWithText>
-        </Container>
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <br />
+          <Container>
+            <Suspense>
+              <LazyFBConnect />
+            </Suspense>
+          </Container>
+          <br />
+          <Container>
+            <DividerWithText>or</DividerWithText>
+          </Container>
 
-        <form
-          className={classes.form}
-          noValidate
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <TextField
-            inputRef={register({
-              required: { value: true, message: "Required" },
-              pattern: {
-                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                message: "Email is not valid, should be my@email.com",
-              },
-            })}
-            margin="normal"
-            required
-            fullWidth
-            id="outlined-email-input"
-            variant="outlined"
-            // id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            // autoFocus
-          />
-          {errors.email && (
-            <p style={{ color: "red", fontWeight: "bold" }}>
-              {errors?.email?.message}
-            </p>
-          )}
-          <TextField
-            inputRef={register({
-              required: { value: true, message: "Required" },
-              minLength: {
-                value: 6,
-                message: "Password should be at-least 6 characters.",
-              },
-            })}
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="outlined-password"
-            variant="outlined"
-            autoComplete="current-password"
-          />
-          {errors.password && (
-            <p style={{ color: "red", fontWeight: "bold" }}>
-              {errors?.password?.message}
-            </p>
-          )}
-          <FormControlLabel
-            control={
-              <Controller
-                as={Checkbox}
-                control={control}
-                defaultValue={false}
-                name="remember"
-                color="primary"
-                variant="contained"
-              />
-            }
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={classes.submit}
-            disabled={store.isSignedIn}
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
           >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+            <TextField
+              inputRef={register({
+                required: { value: true, message: "Required" },
+                pattern: {
+                  value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                  message: "Email is not valid, should be my@email.com",
+                },
+              })}
+              margin="normal"
+              required
+              fullWidth
+              id="outlined-email-input"
+              variant="outlined"
+              // id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              // autoFocus
+            />
+            {errors.email && (
+              <p style={{ color: "red", fontWeight: "bold" }}>
+                {errors?.email?.message}
+              </p>
+            )}
+            <TextField
+              inputRef={register({
+                required: { value: true, message: "Required" },
+                minLength: {
+                  value: 6,
+                  message: "Password should be at-least 6 characters.",
+                },
+              })}
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="outlined-password"
+              variant="outlined"
+              autoComplete="current-password"
+            />
+            {errors.password && (
+              <p style={{ color: "red", fontWeight: "bold" }}>
+                {errors?.password?.message}
+              </p>
+            )}
+            <FormControlLabel
+              control={
+                <Controller
+                  as={Checkbox}
+                  control={control}
+                  defaultValue={false}
+                  name="remember"
+                  color="primary"
+                  variant="contained"
+                />
+              }
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className={classes.submit}
+              disabled={store.isSignedIn}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+          </form>
+        </div>
+      </Container>
+    </Suspense>
   );
 });
 
