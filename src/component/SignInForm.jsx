@@ -28,9 +28,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    // color: theme.palette.secondary.light,
-    // backgroundColor: "#fff",
-    // theme.palette.primary.light,
   },
   avatar: {
     margin: theme.spacing(1),
@@ -51,7 +48,6 @@ const SignInForm = observer(({ store }) => {
     handleSubmit,
     control,
     errors,
-    // reset,
     formState: { isSubmitSuccessful },
   } = useForm({ mode: "onBlur" });
 

@@ -1,4 +1,4 @@
-// import React from "react"; // <- React 17
+import React from "react"; // <- React 17
 import { observer } from "mobx-react-lite";
 
 import { makeStyles } from "@material-ui/core/styles";

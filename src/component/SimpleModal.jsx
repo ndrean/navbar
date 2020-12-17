@@ -2,17 +2,12 @@ import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-// import Dialog from "@material-ui/core/Dialog";
 
 import SignInModal from "./SignInModal.jsx";
 
-// function rand() {
-//   return Math.round(Math.random() * 20) - 10;
-// }
-
 function getModalStyle() {
-  const top = 15; //15; //+ rand();
-  // const left = 5; //+ rand();
+  const top = 15;
+  // const left = 5;
 
   return {
     top: `${top}%`,

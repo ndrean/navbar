@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from "react";
 import UniversalRouter from "universal-router";
-// or cdn <=> window.UniversalRouter
 
 import { action } from "mobx";
 import fetchUsers from "../utils/fetchUsers";
@@ -83,10 +82,10 @@ const routes = [
             path: "",
             // action from Universal Router
             async action({ store }) {
-              fetchUsers().then(action((res) => context.store.addUsers(res))); //action from Mobx
+              fetchUsers().then(action((res) => store.addUsers(res))); //action from Mobx
               return (
                 <Suspense fallback={spin()}>
-                  <LazyContacts store={context.store} />;
+                  <LazyContacts store={store} />;
                 </Suspense>
               );
             },

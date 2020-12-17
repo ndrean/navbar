@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { observer } from "mobx-react-lite";
 import { action } from "mobx";
 import { useForm } from "react-hook-form";
 import history from "../utils/history";
@@ -15,7 +14,6 @@ import {
 } from "@material-ui/core";
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-// import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
 
 import { makeStyles } from "@material-ui/core/styles";

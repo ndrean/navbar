@@ -2,14 +2,15 @@ import ReactDOM from "react-dom";
 
 import history from "./utils/history";
 import router from "./component/router";
-import "./App.css";
+// or cdn <=> window.UniversalRouter: to test
+
 // import initFacebookSdk from "./utils/initFacebookSdk";
 
 import { configure } from "mobx";
-// import reportWebVitals from "./reportWebVitals";
 
 import Error from "./component/Error";
 
+// Mobx debug
 configure({
   enforceActions: "always",
   computedRequiresReaction: true,
@@ -18,6 +19,7 @@ configure({
   disableErrorBoundaries: true,
 });
 
+//
 const anchor = document.getElementById("root");
 
 async function renderRoute(location) {
@@ -35,7 +37,7 @@ async function renderRoute(location) {
   }
 }
 
-// initFacebookSdk().then(startApp);
+// initFacebookSdk().then(startApp); <- to learn
 
 function startApp() {
   history.listen(({ location }) => {
@@ -43,7 +45,6 @@ function startApp() {
   });
   const currentLocation = history.location;
   renderRoute(currentLocation);
-  // reportWebVitals(console.log);
 }
 
 startApp();
