@@ -1,10 +1,10 @@
 import React, { Suspense, lazy } from "react";
-import UniversalRouter from "universal-router";
-
+// import UniversalRouter from "universal-router";
 import { action } from "mobx";
-import fetchUsers from "../utils/fetchUsers";
 
-import store from "../utils/store";
+// import store from "../utils/store";
+
+import fetchUsers from "../utils/fetchUsers";
 
 import Spinner from "./Spinner";
 const spin = () => <Spinner />;
@@ -17,7 +17,13 @@ const LazyNewUsersForm = lazy(() => import("./NewUsersForm"));
 const LazyUser = lazy(() => import("./User"));
 const LazyContacts = lazy(() => import("./Contacts"));
 
-const routes = [
+/* 
+in "index.js", the Mobx store object is declared and passed to the 
+"new UniversalRouter(routes, {context})"  via the object "context={store:store}"
+Here is the skeleton of "routes" waiting for the context to be declared (or not)
+*/
+
+export const routes = [
   {
     path: "",
     async action({ store, next }) {
@@ -34,10 +40,6 @@ const routes = [
       {
         path: "/",
         action: async ({ store }) => {
-          /*
-          let home2 = await Promise.resolve(import("./Home2"));
-          return home2({ store: store });
-          */
           return (
             <Suspense fallback={spin()}>
               <LazyHome store={store} />;
@@ -48,6 +50,7 @@ const routes = [
       {
         path: "/about",
         async action({ store, mode }) {
+          // note: "info" is just a trial to see how data is passed via the context object
           return (
             <Suspense fallback={spin()}>
               <LazyAbout store={store} info={mode} />;
@@ -80,9 +83,10 @@ const routes = [
         children: [
           {
             path: "",
-            // action from Universal Router
+            // the "action" below is from Universal Router
             async action({ store }) {
-              fetchUsers().then(action((res) => store.addUsers(res))); //action from Mobx
+              fetchUsers() // the "action" below is from Mobx
+                .then(action((res) => store.addUsers(res)));
               return (
                 <Suspense fallback={spin()}>
                   <LazyContacts store={store} />;
@@ -92,11 +96,16 @@ const routes = [
           },
           {
             path: "/:email",
-            async action({ store }, { email }) {
-              // const email = context.params.email;
+            async action(context) {
+              // or ({ store }, { email }) instead of context
+              // const email = context.params.email; // cf UR docs
               return (
                 <Suspense fallback={spin()}>
-                  <LazyUser email={email} store={store} />;
+                  <LazyUser
+                    email={context.params.email}
+                    store={context.store}
+                  />
+                  ;
                 </Suspense>
               );
             },
@@ -107,9 +116,9 @@ const routes = [
   },
 ];
 
-const context = {
-  mode: "admin",
-  store,
-};
+// const context = {
+//   mode: "admin", <- just a trial
+//   store,
+// };
 
-export default new UniversalRouter(routes, { context });
+// export default new UniversalRouter(routes, { context });

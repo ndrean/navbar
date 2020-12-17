@@ -1,9 +1,13 @@
 import ReactDOM from "react-dom";
 
-import history from "./utils/history";
-import router from "./component/router";
-// or cdn <=> window.UniversalRouter: to test
+import UniversalRouter from "universal-router";
 
+import history from "./utils/history";
+import { routes } from "./component/router";
+
+import store from "./utils/store";
+
+// or cdn <=> window.UniversalRouter: to test
 // import initFacebookSdk from "./utils/initFacebookSdk";
 
 import { configure } from "mobx";
@@ -22,6 +26,13 @@ configure({
 //
 const anchor = document.getElementById("root");
 
+const context = {
+  mode: "admin",
+  store,
+};
+
+const router = new UniversalRouter(routes, { context });
+
 async function renderRoute(location) {
   try {
     if (location === undefined) {
@@ -37,14 +48,14 @@ async function renderRoute(location) {
   }
 }
 
-// initFacebookSdk().then(startApp); <- to learn
+// .then(startApp); <- to learn
 
 function startApp() {
-  history.listen(({ location }) => {
-    renderRoute(location);
-  });
-  const currentLocation = history.location;
-  renderRoute(currentLocation);
+  history.listen(({ location }) => renderRoute(location));
+  renderRoute(history.location); // currentLocation = history.location
 }
 
+// initFacebookSdk();
 startApp();
+
+/* Note: check history.listen((res) => console.log(res)); */

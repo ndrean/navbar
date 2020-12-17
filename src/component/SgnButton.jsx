@@ -1,5 +1,4 @@
 import React from "react";
-// import Modal from "@material-ui/core/Modal";
 
 import { action } from "mobx";
 import { observer } from "mobx-react-lite";

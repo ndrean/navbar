@@ -1,10 +1,12 @@
-import * as React from "react";
+import React, { lazy, Suspense } from "react";
 import { action } from "mobx";
 import { observer } from "mobx-react-lite";
 import history from "../utils/history";
 
+// import initFacebookSdk from "../utils/initFacebookSdk";
+
 import {
-  Avatar,
+  // Avatar,
   Button,
   CssBaseline,
   TextField,
@@ -16,11 +18,15 @@ import {
   Container,
 } from "@material-ui/core";
 
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import DividerWithText from "./DividerWithText";
+
+// import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import { useForm, Controller } from "react-hook-form";
+
+const LazyFBConnect = lazy(() => import("./FBConnect"));
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -67,14 +73,22 @@ const SignInForm = observer(({ store }) => {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
 
+      <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        <br />
+        <Container>
+          <Suspense>
+            <LazyFBConnect />
+          </Suspense>
+        </Container>
+        <br />
+        <Container>
+          <DividerWithText>or</DividerWithText>
+        </Container>
+
         <form
           className={classes.form}
           noValidate
@@ -101,7 +115,7 @@ const SignInForm = observer(({ store }) => {
           />
           {errors.email && (
             <p style={{ color: "red", fontWeight: "bold" }}>
-              {errors.email.message}
+              {errors?.email?.message}
             </p>
           )}
           <TextField
@@ -124,7 +138,7 @@ const SignInForm = observer(({ store }) => {
           />
           {errors.password && (
             <p style={{ color: "red", fontWeight: "bold" }}>
-              {errors.password.message}
+              {errors?.password?.message}
             </p>
           )}
           <FormControlLabel

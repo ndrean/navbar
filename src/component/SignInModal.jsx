@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { action } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
+
+// import FBIcon from "../utils/FBIcon";
 
 import {
   Button,
@@ -10,9 +12,15 @@ import {
   Paper,
   Grid,
   Typography,
+  Container,
+  // Icon,
 } from "@material-ui/core";
 
+import DividerWithText from "./DividerWithText";
+
 import { makeStyles } from "@material-ui/core/styles";
+
+const LazyFBConnect = lazy(() => import("./FBConnect"));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,12 +72,21 @@ const SignInModal = observer(({ store }) => {
       justify="center"
     >
       <CssBaseline />
+
       <Grid item xs={6} sm={6} md={5} component={Paper} elevation={6} square>
         <div className={paperForm}>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-
+          <br />
+          <Container>
+            <Suspense>
+              <LazyFBConnect />
+            </Suspense>
+          </Container>
+          <Container>
+            <DividerWithText>or</DividerWithText>
+          </Container>
           <form className={form} noValidate onSubmit={handleSubmit(onSubmit)}>
             <TextField
               inputRef={register({
