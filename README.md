@@ -29,15 +29,15 @@ and run `yarn deploy`.
 
 0. ~~All Material-UI imports with rewired/custom-cra~~
 1. ~~Modal for sign-in~~
-2. ~~dynamic badges in navbar~~
-3. ~~Mobil format of navbar~~
+2. ~~dynamic badges in navbar on #contacts & #pages-views~~
+3. ~~Mobile format of navbar & drawer~~
 4. ~~navigation with drawer~~
 5. Images: use Cloudinary API to save images without back-end
-6. ~~Dynamic form: new-delete dynamic form user~~
+6. ~~Dynamic form: new + delete dynamic form user~~
 7. ~~Implement fake POST and fake return token~~
-8. ~~create Alert when user created with token~~
-9. Continue Suspense/lazy for code splitting
-10. Facebook login
+8. ~~Suspense/lazy for code splitting~~
+9. ~~Facebook login, in modal & login-form~~
+10. ~~create Alert with the return token: FB-token & user created with fake-token~~
 11. Compare with React Router for passing props vs Universal Router - Mobx
 
 ## CRA & Material-UI config (to use imports)
