@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 // import FBIcon from "../utils/FBIcon";
+// import history from "../utils/history";
 
 import { Button } from "@material-ui/core";
 import { action } from "mobx";
@@ -21,7 +22,13 @@ const FBButton = observer(() => {
         { fields: "name, email" },
         action(function (response) {
           setUser({ name: response.name, email: response.email });
-          store.setCurrent({ email: response.email, pwd: fbToken });
+          store.setCurrent({
+            name: response.name,
+            email: response.email,
+            pwd: fbToken,
+            signed: true,
+            fb: true,
+          });
           store.toggleSgn();
         })
       );
@@ -38,11 +45,27 @@ const FBButton = observer(() => {
             },
             { scope: "email" }
           );
+          // history.push({ pathname: "/" });
         } else {
-          setUser("");
-          store.setCurrent({});
-          store.isSignedIn = false;
-          return window.FB.logout();
+          return window.FB.api(
+            "/me",
+            { fields: "name, email" },
+            action(function (response) {
+              setUser({ name: response.name, email: response.email });
+              store.setCurrent({
+                name: response.name,
+                email: response.email,
+                pwd: response.authResponse.accessToken,
+                signed: true,
+                fb: true,
+              });
+              store.toggleSgn();
+            })
+          );
+          // setUser("");
+          // store.setCurrent({});
+          // store.isSignedIn = false;
+          // return window.FB.logout();
         }
       })
     );
@@ -53,13 +76,14 @@ const FBButton = observer(() => {
       <Button
         onClick={FBLogin}
         fullWidth
+        disabled={store.current.signed}
         variant="outlined"
         style={{
-          backgroundColor: user && store.isSignedIn ? "#997b3b" : "#3b5999",
+          backgroundColor: store.current.signed ? "#997b3b" : "#3b5999",
         }}
       >
-        {user && store.isSignedIn
-          ? `Welcome ${user.name}`
+        {store.current.signed
+          ? `Welcome ${store.current.name}`
           : "Login with Facebook"}
       </Button>
     </>

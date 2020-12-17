@@ -140,7 +140,7 @@ const SignInModal = observer(({ store }) => {
               variant="contained"
               color="primary"
               className={submit}
-              disabled={store.isSignedIn}
+              disabled={store.current.signed}
             >
               Sign In
             </Button>

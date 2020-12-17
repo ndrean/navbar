@@ -63,7 +63,7 @@ const SignInForm = observer(({ store }) => {
       store.addUser({ email: email, pwd: password });
       store.toggleSgn();
       store.setMsg();
-      store.setCurrent({ email: email, pwd: password });
+      store.setCurrent({ email: email, pwd: password, signed: true }); //<-
     }
     store.setModalClose();
   });

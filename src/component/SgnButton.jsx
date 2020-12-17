@@ -12,7 +12,11 @@ const SgnButton = observer(({ store }) => {
   function handleModalClick() {
     store.setMsg();
     if (store.isSignedIn) {
-      store.rmCurrent(store.current);
+      // <-
+      if (store.current.fb) {
+        window.FB.logout();
+      } //<-
+      store.current = {};
       store.toggleSgn();
     } else {
       store.toggleModal();
