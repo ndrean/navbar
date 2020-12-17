@@ -30,7 +30,7 @@ const ActionAlerts = ({ token }) => {
             setOpen(false);
           }}
         >
-          The token is {token.toString().substring(0, 40) + "..."}
+          The token is {token.substring(0, 40) + "..."}
         </Alert>
       </Collapse>
     </div>

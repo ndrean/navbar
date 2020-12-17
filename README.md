@@ -2,9 +2,13 @@
 
 ## Deploy
 
+### Netlify
+
+Just go to <https://netlify.com> ....
+
 ### Surge:
 
-Surge publishes static web apps to a CDN with a single command. Install the **surge cli** (<https://surge.sh/>), run `yarn build`, then `cd /build` and `surge`: name it and view the app at: <http://rmm.surge.sh/>
+Install the **surge cli** (<https://surge.sh/>), run `yarn build`, then `surge` in the "./build" folder: name it and view the app at: <http://rmm.surge.sh/>
 
 ### Github pages
 

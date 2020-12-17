@@ -48,14 +48,11 @@ async function renderRoute(location) {
   }
 }
 
-// .then(startApp); <- to learn
-
 function startApp() {
   history.listen(({ location }) => renderRoute(location));
   renderRoute(history.location); // currentLocation = history.location
 }
 
-// initFacebookSdk();
 startApp();
 
 /* Note: check history.listen((res) => console.log(res)); */

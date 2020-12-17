@@ -97,13 +97,14 @@ export const routes = [
           {
             path: "/:email",
             async action(context) {
-              // or ({ store }, { email }) instead of context
-              // const email = context.params.email; // cf UR docs
+              // <=> ({ store,mode }, { email }) instead of context
+              // where "const email = context.params.email" // cf UR docs
               return (
                 <Suspense fallback={spin()}>
                   <LazyUser
                     email={context.params.email}
                     store={context.store}
+                    mode={context.mode}
                   />
                   ;
                 </Suspense>
