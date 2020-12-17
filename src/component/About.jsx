@@ -59,9 +59,10 @@ const cards = [
   },
 ];
 
-const About = observer(({ store }) => {
+const About = observer(({ store, info }) => {
   const classes = useStyles();
 
+  console.log("info mode:", info);
   const handleClick = () => {};
   /* 
   From the Navbar, the function "store.inc()" is called before running this component

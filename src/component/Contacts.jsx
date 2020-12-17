@@ -102,6 +102,7 @@ const Contacts = observer(({ store }) => {
     e.preventDefault();
     history.push({ pathname: e.currentTarget.pathname });
   };
+
   return (
     <>
       <div>{store.token && <ActionAlerts token={store.token} />}</div>

@@ -274,6 +274,37 @@ setValues((prev) => {
 });
 ```
 
+### a Loader/Spinner
+
+```css
+.loader {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.loader:after {
+  content: " ";
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: loader 1.2s linear infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+```
+
 ### Make a phone call
 
 `<a href="tel:60305520">Call me!</a>`

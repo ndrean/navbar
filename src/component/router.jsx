@@ -4,6 +4,7 @@ import UniversalRouter from "universal-router";
 
 import { action } from "mobx";
 import fetchUsers from "../utils/fetchUsers";
+
 import store from "../utils/store";
 
 import Spinner from "./Spinner";
@@ -17,10 +18,10 @@ const LazyNewUsersForm = lazy(() => import("./NewUsersForm"));
 const LazyUser = lazy(() => import("./User"));
 const LazyContacts = lazy(() => import("./Contacts"));
 
-export default new UniversalRouter([
+const routes = [
   {
     path: "",
-    async action({ next }) {
+    async action({ store, next }) {
       const component = await next();
       return (
         component && (
@@ -33,7 +34,7 @@ export default new UniversalRouter([
     children: [
       {
         path: "/",
-        action: async () => {
+        action: async ({ store }) => {
           /*
           let home2 = await Promise.resolve(import("./Home2"));
           return home2({ store: store });
@@ -47,35 +48,32 @@ export default new UniversalRouter([
       },
       {
         path: "/about",
-        async action() {
+        async action({ store, mode }) {
           return (
             <Suspense fallback={spin()}>
-              <LazyAbout store={store} />;
+              <LazyAbout store={store} info={mode} />;
             </Suspense>
           );
-          //  <About store={store} />;
         },
       },
       {
         path: "/signinform",
-        async action() {
+        async action({ store }) {
           return (
             <Suspense fallback={spin()}>
               <LazySignInForm store={store} />;
             </Suspense>
           );
-          // <SignInForm store={store} />;
         },
       },
       {
         path: "/addusers",
-        async action() {
+        async action(context) {
           return (
             <Suspense fallback={spin()}>
-              <LazyNewUsersForm store={store} />;
+              <LazyNewUsersForm store={context.store} />;
             </Suspense>
           );
-          // <NewUsersForm store={store} />;
         },
       },
       {
@@ -84,30 +82,35 @@ export default new UniversalRouter([
           {
             path: "",
             // action from Universal Router
-            async action() {
-              fetchUsers().then(action((res) => store.addUsers(res))); //action from Mobx
+            async action({ store }) {
+              fetchUsers().then(action((res) => context.store.addUsers(res))); //action from Mobx
               return (
                 <Suspense fallback={spin()}>
-                  <LazyContacts store={store} />;
+                  <LazyContacts store={context.store} />;
                 </Suspense>
               );
-              //  <Contacts store={store} />;
             },
           },
           {
             path: "/:email",
-            async action(context) {
-              const email = context.params.email;
+            async action({ store }, { email }) {
+              // const email = context.params.email;
               return (
                 <Suspense fallback={spin()}>
                   <LazyUser email={email} store={store} />;
                 </Suspense>
               );
-              //  <User email={email} store={store} />;
             },
           },
         ],
       },
     ],
   },
-]);
+];
+
+const context = {
+  mode: "admin",
+  store,
+};
+
+export default new UniversalRouter(routes, { context });
