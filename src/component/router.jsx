@@ -1,7 +1,5 @@
 import React, { Suspense, lazy } from "react";
 import { action } from "mobx";
-import { observer } from "mobx-react-lite";
-// import store from "../utils/store";
 
 import fetchUsers from "../utils/fetchUsers";
 
@@ -71,19 +69,19 @@ export const routes = [
       {
         path: "/addusers",
         async action({ store, mode }) {
-          if (mode === process.env.REACT_APP_MODE)
+          if (mode === process.env.REACT_APP_MODE) {
             return (
               <Suspense fallback={spin()}>
                 <LazyNewUsersForm store={store} />;
               </Suspense>
             );
-          else {
-            // return { redirect: "/", from: context.pathname };
-            return (
-              <Suspense fallback={spin()}>
-                <LazyHome store={store} />;
-              </Suspense>
-            );
+          } else {
+            return { redirect: "/" };
+            // return (
+            //   <Suspense fallback={spin()}>
+            //     <LazyHome store={store} />;
+            //   </Suspense>
+            // );
           }
         },
       },

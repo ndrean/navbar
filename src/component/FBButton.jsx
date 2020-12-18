@@ -30,6 +30,7 @@ const FBButton = observer(() => {
             fb: true,
           });
           store.toggleSgn();
+          console.log(user);
         })
       );
     }
