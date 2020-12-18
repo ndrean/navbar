@@ -59,11 +59,11 @@ const cards = [
   },
 ];
 
-const About = observer(({ store, info }) => {
+const About = observer(({ store }) => {
   const classes = useStyles();
-
-  console.log("info mode:", info);
-  const handleClick = () => {};
+  const handleClick = () => {
+    return null;
+  };
   /* 
   From the Navbar, the function "store.inc()" is called before running this component
   so we get the update of "store.nb"

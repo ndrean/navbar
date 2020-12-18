@@ -1,8 +1,10 @@
-import React from "react"; // <- React 17
+import React, { lazy, Suspense } from "react"; // <- React 17
 import { observer } from "mobx-react-lite";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Container } from "@material-ui/core";
+
+const LazyMode = lazy(() => import("./ModeSwitch"));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,10 +15,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home = observer(({ store }) => {
+const Home = observer(({ store, ...props }) => {
+  console.log("mode:", props.mode); // <- TESTING props
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      <Suspense>
+        <LazyMode />
+      </Suspense>
       <br />
       <Container maxWidth="sm" className={classes.root}>
         <Typography

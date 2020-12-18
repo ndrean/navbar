@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from "react";
-// import UniversalRouter from "universal-router";
 import { action } from "mobx";
-
+import { observer } from "mobx-react-lite";
 // import store from "../utils/store";
 
 import fetchUsers from "../utils/fetchUsers";
@@ -39,21 +38,22 @@ export const routes = [
     children: [
       {
         path: "/",
-        action: async ({ store }) => {
+        // -> testing "static general props" passing with ctx & resolve
+        action: async ({ store, mode }) => {
           return (
             <Suspense fallback={spin()}>
-              <LazyHome store={store} />;
+              <LazyHome store={store} mode={mode} />;
             </Suspense>
           );
         },
       },
       {
         path: "/about",
-        async action({ store, mode }) {
+        async action({ store }) {
           // note: "info" is just a trial to see how data is passed via the context object
           return (
             <Suspense fallback={spin()}>
-              <LazyAbout store={store} info={mode} />;
+              <LazyAbout store={store} />;
             </Suspense>
           );
         },
@@ -70,14 +70,44 @@ export const routes = [
       },
       {
         path: "/addusers",
-        async action(context) {
-          return (
-            <Suspense fallback={spin()}>
-              <LazyNewUsersForm store={context.store} />;
-            </Suspense>
-          );
+        async action({ store, mode }) {
+          if (mode === process.env.REACT_APP_MODE)
+            return (
+              <Suspense fallback={spin()}>
+                <LazyNewUsersForm store={store} />;
+              </Suspense>
+            );
+          else {
+            // return { redirect: "/", from: context.pathname };
+            return (
+              <Suspense fallback={spin()}>
+                <LazyHome store={store} />;
+              </Suspense>
+            );
+          }
         },
-      },
+      } /*
+      {
+        path: "/addusers",
+        async action({ store, mode, next }) {
+          if (mode === null) {
+            return { redirect: "/about" };
+          }
+          return next();
+        },
+        children: [
+          {
+            path: "/",
+            async action({ store }) {
+              return (
+                <Suspense fallback={spin()}>
+                  <LazyNewUsersForm store={store} />;
+                </Suspense>
+              );
+            },
+          },
+        ],
+      },*/,
       {
         path: "/contacts",
         children: [
@@ -99,6 +129,7 @@ export const routes = [
             async action(context) {
               // <=> ({ store,mode }, { email }) instead of context
               // where "const email = context.params.email" // cf UR docs
+
               return (
                 <Suspense fallback={spin()}>
                   <LazyUser

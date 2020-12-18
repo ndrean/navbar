@@ -5,10 +5,9 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import darkTheme from "../utils/theme";
 // import { StateProvider } from "../context/statectx";
 
-import store from "../utils/store";
 const LazyNavbar = lazy(() => import("./Navbar"));
 
-const Layout = ({ children }) => {
+const Layout = ({ store, children }) => {
   return (
     // <StateProvider>
     <ThemeProvider theme={darkTheme}>
