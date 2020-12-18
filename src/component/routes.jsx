@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { action } from "mobx";
+import { action as mobxAction } from "mobx";
 
 import fetchUsers from "../utils/fetchUsers";
 
@@ -69,20 +69,15 @@ export const routes = [
       {
         path: "/addusers",
         async action({ store, mode }) {
-          if (mode === process.env.REACT_APP_MODE) {
-            return (
-              <Suspense fallback={spin()}>
-                <LazyNewUsersForm store={store} />;
-              </Suspense>
-            );
-          } else {
-            return { redirect: "/" };
-            // return (
-            //   <Suspense fallback={spin()}>
-            //     <LazyHome store={store} />;
-            //   </Suspense>
-            // );
+          if (mode !== process.env.REACT_APP_MODE) {
+            console.log("mode-redirect");
+            return { redirect: "/about" };
           }
+          return (
+            <Suspense fallback={spin()}>
+              <LazyNewUsersForm store={store} />
+            </Suspense>
+          );
         },
       },
       {
@@ -90,10 +85,8 @@ export const routes = [
         children: [
           {
             path: "",
-            // the "action" below is from Universal Router
             async action({ store }) {
-              fetchUsers() // the "action" below is from Mobx
-                .then(action((res) => store.addUsers(res)));
+              fetchUsers().then(mobxAction((res) => store.addUsers(res)));
               return (
                 <Suspense fallback={spin()}>
                   <LazyContacts store={store} />;
@@ -123,10 +116,3 @@ export const routes = [
     ],
   },
 ];
-
-// const context = {
-//   mode: "admin", <- just a trial
-//   store,
-// };
-
-// export default new UniversalRouter(routes, { context });

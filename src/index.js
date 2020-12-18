@@ -1,21 +1,18 @@
 import { render } from "react-dom";
 // import React from "react";
 import UniversalRouter from "universal-router";
+// or cdn <=> window.UniversalRouter: to test
 
 import history from "./utils/history";
-import { routes } from "./component/router";
-
+import { routes } from "./component/routes";
 import store from "./utils/store";
-
-// or cdn <=> window.UniversalRouter: to test
-// import initFacebookSdk from "./utils/initFacebookSdk";
 
 import { configure } from "mobx";
 
 import Error from "./component/Error";
-import { RedeemRounded } from "@material-ui/icons";
+// import { RedeemRounded } from "@material-ui/icons";
 
-// Mobx debug
+// <-  Mobx debug config
 configure({
   enforceActions: "always",
   computedRequiresReaction: true,
@@ -23,6 +20,7 @@ configure({
   observableRequiresReaction: true,
   disableErrorBoundaries: true,
 });
+// -< Mobx debug config
 
 const anchor = document.getElementById("root");
 
@@ -34,24 +32,25 @@ const context = {
 
 const router = new UniversalRouter(routes, { context });
 
-function renderRoute(location) {
-  return router
-    .resolve({ pathname: location.pathname })
-    .then((page) => {
-      if (page.redirect) {
-        return history.push({ pathname: page.redirect });
-      } else {
-        return render(page, anchor);
-      }
-    })
-    .catch((err) => {
-      render(<Error />, anchor);
-    });
+async function renderRoute(location) {
+  try {
+    const page = await router.resolve({ pathname: location.pathname });
+    if (page.redirect) {
+      console.log("ici");
+      return history.push({ pathname: page.redirect });
+    }
+    return render(page, anchor);
+  } catch (err) {
+    render(<Error />, anchor);
+  }
 }
 
 function startApp() {
-  history.push({ pathname: "/" });
-  history.listen(({ location }) => renderRoute(location));
+  history.push({ pathname: "" });
+  history.listen(({ location }) => {
+    console.log(location.pathname);
+    return renderRoute(location);
+  });
   renderRoute(history.location); // currentLocation = history.location
 }
 
@@ -62,29 +61,4 @@ Note1: check history.listen((res) => console.log(res));
  Nte2: to TEST
 const comp = React.createElement(() => resolvedComp, {mode: "CTO"})
 <- ReactDOM renders the "comp" but without the prop ... ??
-*/
-
-/*
-async function renderRoute(location) {
-  try {
-    if (location === undefined) {
-      return (location.pathname = "/");
-    }
-    const page = await router.resolve({
-      pathname: location.pathname,
-      // mode: "CCO", //<- overwrites the context
-    });
-
-    if (page.redirect) {
-      console.log("history redir");
-      history.push({ pathname: page.redirect });
-    } else {
-      console.log("hist normal", location.pathname);
-      return render(page, anchor);
-    }
-  } catch (err) {
-    console.log("Nothing there: ", location);
-    return render(<Error />, anchor);
-  }
-}
 */
