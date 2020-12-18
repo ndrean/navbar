@@ -25,8 +25,7 @@ configure({
 const anchor = document.getElementById("root");
 
 const context = {
-  user: "me", // <- TESTING props
-  mode: "no admin", //process.env.REACT_APP_MODE= "admin" in "routes.js"
+  mode: "admin", //process.env.REACT_APP_MODE= "admin" in "routes.js"
   store,
 };
 
@@ -35,10 +34,11 @@ const router = new UniversalRouter(routes, { context });
 async function renderRoute(location) {
   try {
     const page = await router.resolve({ pathname: location.pathname });
+    console.log(Object.keys(page));
     if (page.redirect) {
-      console.log("ici");
       return history.push({ pathname: page.redirect });
     }
+
     return render(page, anchor);
   } catch (err) {
     render(<Error />, anchor);
@@ -46,11 +46,8 @@ async function renderRoute(location) {
 }
 
 function startApp() {
-  history.push({ pathname: "" });
-  history.listen(({ location }) => {
-    console.log(location.pathname);
-    return renderRoute(location);
-  });
+  history.push({ pathname: "/" });
+  history.listen(({ location }) => renderRoute(location));
   renderRoute(history.location); // currentLocation = history.location
 }
 

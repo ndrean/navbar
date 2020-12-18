@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { action as mobxAction } from "mobx";
-
+import history from "../utils/history";
 import fetchUsers from "../utils/fetchUsers";
 
 import Spinner from "./Spinner";
@@ -36,7 +36,6 @@ export const routes = [
     children: [
       {
         path: "/",
-        // -> testing "static general props" passing with ctx & resolve
         action: async ({ store, mode }) => {
           return (
             <Suspense fallback={spin()}>
@@ -48,7 +47,6 @@ export const routes = [
       {
         path: "/about",
         async action({ store }) {
-          // note: "info" is just a trial to see how data is passed via the context object
           return (
             <Suspense fallback={spin()}>
               <LazyAbout store={store} />;
@@ -69,8 +67,8 @@ export const routes = [
       {
         path: "/addusers",
         async action({ store, mode }) {
-          if (mode !== process.env.REACT_APP_MODE) {
-            console.log("mode-redirect");
+          // if (mode !== process.env.REACT_APP_MODE) {
+          if (mode !== "admin") {
             return { redirect: "/about" };
           }
           return (
