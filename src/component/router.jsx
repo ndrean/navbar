@@ -86,28 +86,7 @@ export const routes = [
             );
           }
         },
-      } /*
-      {
-        path: "/addusers",
-        async action({ store, mode, next }) {
-          if (mode === null) {
-            return { redirect: "/about" };
-          }
-          return next();
-        },
-        children: [
-          {
-            path: "/",
-            async action({ store }) {
-              return (
-                <Suspense fallback={spin()}>
-                  <LazyNewUsersForm store={store} />;
-                </Suspense>
-              );
-            },
-          },
-        ],
-      },*/,
+      },
       {
         path: "/contacts",
         children: [
@@ -129,7 +108,6 @@ export const routes = [
             async action(context) {
               // <=> ({ store,mode }, { email }) instead of context
               // where "const email = context.params.email" // cf UR docs
-
               return (
                 <Suspense fallback={spin()}>
                   <LazyUser
