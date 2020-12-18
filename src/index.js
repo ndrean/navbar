@@ -34,11 +34,10 @@ const router = new UniversalRouter(routes, { context });
 async function renderRoute(location) {
   try {
     const page = await router.resolve({ pathname: location.pathname });
-    console.log(Object.keys(page));
+    // console.log(Object.keys(page));
     if (page.redirect) {
       return history.push({ pathname: page.redirect });
     }
-
     return render(page, anchor);
   } catch (err) {
     render(<Error />, anchor);

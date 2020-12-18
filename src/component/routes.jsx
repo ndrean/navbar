@@ -20,6 +20,96 @@ in "index.js", the Mobx store object is declared and passed to the
 Here is the skeleton of "routes" waiting for the context to be declared (or not)
 */
 
+/*
+export const routes = [
+  {
+    path: "/",
+    action: async ({ store, mode }) => {
+      return (
+        <Suspense fallback={<Spinner />}>
+          <LazyLayout store={store}>
+            <LazyHome store={store} mode={mode} />;
+          </LazyLayout>
+        </Suspense>
+      );
+    },
+  },
+  {
+    path: "/about",
+    async action({ store }) {
+      return (
+        <Suspense fallback={spin()}>
+          <LazyLayout store={store}>
+            <LazyAbout store={store} />
+          </LazyLayout>
+        </Suspense>
+      );
+    },
+  },
+  {
+    path: "/signinform",
+    async action({ store }) {
+      return (
+        <Suspense fallback={spin()}>
+          <LazyLayout store={store}>
+            <LazySignInForm store={store} />
+          </LazyLayout>
+        </Suspense>
+      );
+    },
+  },
+  {
+    path: "/addusers",
+    async action({ store, mode }) {
+      // if (mode !== process.env.REACT_APP_MODE) {
+      if (mode !== "admin") {
+        return { redirect: "/about" };
+      }
+      return (
+        <Suspense fallback={spin()}>
+          <LazyLayout store={store}>
+            <LazyNewUsersForm store={store} />
+          </LazyLayout>
+        </Suspense>
+      );
+    },
+  },
+  {
+    path: "/contacts",
+    children: [
+      {
+        path: "",
+        async action({ store }) {
+          fetchUsers().then(mobxAction((res) => store.addUsers(res)));
+          return (
+            <Suspense fallback={spin()}>
+              <LazyContacts store={store} />;
+            </Suspense>
+          );
+        },
+      },
+      {
+        path: "/:email",
+        async action(context) {
+          // <=> ({ store,mode }, { email }) instead of context
+          // where "const email = context.params.email" // cf UR docs
+          return (
+            <Suspense fallback={spin()}>
+              <LazyUser
+                email={context.params.email}
+                store={context.store}
+                mode={context.mode}
+              />
+              ;
+            </Suspense>
+          );
+        },
+      },
+    ],
+  },
+];
+*/
+
 export const routes = [
   {
     path: "",
@@ -67,9 +157,13 @@ export const routes = [
       {
         path: "/addusers",
         async action({ store, mode }) {
-          // if (mode !== process.env.REACT_APP_MODE) {
-          if (mode !== "admin") {
-            return { redirect: "/about" };
+          if (mode !== process.env.REACT_APP_MODE) {
+            // return { redirect: "/"} <- bug?
+            return (
+              <Suspense fallback={spin()}>
+                <LazyHome store={store} mode={mode} />;
+              </Suspense>
+            );
           }
           return (
             <Suspense fallback={spin()}>
