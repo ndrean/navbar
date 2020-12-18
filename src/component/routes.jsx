@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from "react";
 import { action as mobxAction } from "mobx";
-import history from "../utils/history";
 import fetchUsers from "../utils/fetchUsers";
 
 import Spinner from "./Spinner";
