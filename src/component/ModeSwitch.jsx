@@ -18,7 +18,7 @@ const ModeSwitch = () => {
     setState({ ...state, checkedA: !state.checkedA });
     store.mode === "admin"
       ? window.localStorage.setItem("mode", "admin")
-      : window.localStorage.setItem("mode", "user");
+      : window.localStorage.setItem("mode", "");
     console.log(store.mode);
   });
 
