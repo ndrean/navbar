@@ -1,10 +1,10 @@
 import React from "react";
-
+import { action } from "mobx";
+import { observer } from "mobx-react-lite";
 import { Switch, FormControlLabel } from "@material-ui/core";
 import store from "../utils/store";
-import { action } from "mobx";
 
-const ModeSwitch = () => {
+const ModeSwitch = observer(() => {
   const [state, setState] = React.useState({
     checkedA: Boolean(window.localStorage.getItem("mode")),
   });
@@ -19,7 +19,6 @@ const ModeSwitch = () => {
     store.mode === "admin"
       ? window.localStorage.setItem("mode", "admin")
       : window.localStorage.setItem("mode", "");
-    console.log(store.mode);
   });
 
   console.log(state.checkedA, store.mode, window.localStorage.getItem("mode"));
@@ -36,6 +35,6 @@ const ModeSwitch = () => {
       label="Admin mode"
     />
   );
-};
+});
 
 export default ModeSwitch;

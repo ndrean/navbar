@@ -6,7 +6,7 @@
 
 Just go to <https://netlify.com> ....
 
-### Surge:
+### Surge
 
 Install the **surge cli** (<https://surge.sh/>), run `yarn build`, then `surge` in the "./build" folder: name it and view the app at: <http://rmm.surge.sh/>
 
@@ -32,13 +32,18 @@ and run `yarn deploy`.
 2. ~~dynamic badges in navbar on #contacts & #pages-views~~
 3. ~~Mobile format of navbar & drawer~~
 4. ~~navigation with drawer~~
-5. Images: use Cloudinary API to save images without back-end
-6. ~~Dynamic form: new + delete dynamic form user~~
-7. ~~Implement fake POST and fake return token~~
-8. ~~Suspense/lazy for code splitting~~
-9. ~~Facebook login, in modal & login-form~~
-10. ~~create Alert with the return token: FB-token & user created with fake-token~~
-11. Compare with React Router for passing props vs Universal Router - Mobx
+5. ~~Mode admin / user for protected routes (using `localStorage`)
+6. Navigation with Universal Router:
+   6.1 ~~nested dynamic route `/contacts/:id`~~
+   6.2 ~~redirection on protected route `addcontact`~~
+   6.3 deep nested: `contacts/:id/info`
+7. ~~Dynamic form: new + delete dynamic form user~~
+8. ~~Implement fake POST and fake return token~~
+9. ~~Suspense/lazy for code splitting~~
+10. ~~Facebook login, in modal & login-form~~
+11. ~~create Alert with the return token: FB-token & user created with fake-token~~
+
+12. Compare with React Router for passing props vs Universal Router - Mobx
 
 ## CRA & Material-UI config (to use imports)
 

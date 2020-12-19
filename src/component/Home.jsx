@@ -31,26 +31,33 @@ const Home = observer(({ store, ...props }) => {
           align="center"
           color="textPrimary"
           gutterBottom
-          style={{ margin: "5rem" }}
+          style={{ margin: "2rem" }}
         >
           {store.setWelcome}
         </Typography>
-
-        <Typography>{store.current.email}</Typography>
-        <br />
-        <hr />
-        <br />
         <Typography
           component="h6"
           variant="h6"
           align="center"
           color="textPrimary"
           gutterBottom
-          style={{ marginTop: "2rem" }}
+          style={{ margin: "1rem" }}
+        >
+          You can set the "admin" mode to enable contact creation
+        </Typography>
+
+        <Typography>{store.current.email}</Typography>
+
+        <Typography
+          component="h6"
+          variant="h6"
+          align="center"
+          color="textPrimary"
+          gutterBottom
+          style={{ marginTop: "1rem" }}
         >
           You can visit the tech stack used at the page "About"
         </Typography>
-        {/* <a href="tel:06.30.55.20.98">06.30.55.20.98</a> */}
       </Container>
     </div>
   );

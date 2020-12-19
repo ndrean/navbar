@@ -114,6 +114,9 @@ export const routes = [
     path: "",
     async action({ store, next }) {
       const component = await next();
+      if (component.redirect) {
+        return component;
+      }
       return (
         component && (
           <Suspense fallback={<Spinner />}>
@@ -157,16 +160,11 @@ export const routes = [
         path: "/addusers",
         async action({ store, mode }) {
           if (mode !== window.localStorage.getItem("mode")) {
-            // return { redirect: "/"} <- bug?
-            return (
-              <Suspense fallback={spin()}>
-                <LazyHome store={store} mode={mode} />;
-              </Suspense>
-            );
+            return { redirect: "/" };
           }
           return (
             <Suspense fallback={spin()}>
-              <LazyNewUsersForm store={store} />
+              <LazyNewUsersForm store={store} mode={mode} />;
             </Suspense>
           );
         },
