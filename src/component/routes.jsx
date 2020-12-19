@@ -156,7 +156,7 @@ export const routes = [
       {
         path: "/addusers",
         async action({ store, mode }) {
-          if (mode !== process.env.REACT_APP_MODE) {
+          if (mode !== window.localStorage.getItem("mode")) {
             // return { redirect: "/"} <- bug?
             return (
               <Suspense fallback={spin()}>

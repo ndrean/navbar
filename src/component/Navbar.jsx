@@ -39,7 +39,8 @@ import {
   Info,
   LockOpenOutlined,
   ContactsOutlined,
-  // ErrorOutline,
+  Lock,
+  LockOpen,
   HomeOutlined,
 } from "@material-ui/icons";
 
@@ -151,7 +152,7 @@ const Navbar = observer(({ store, ...props }) => {
       </List>
       <Divider />
       <List>
-        {["Contacts", "Add Contact"].map((text, index) => (
+        {["Contacts", "Add Contact "].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index === 0 && (
@@ -161,7 +162,10 @@ const Navbar = observer(({ store, ...props }) => {
               )}
               {index === 1 && (
                 <LinkItem to="/addusers" handler={handleMenuClose} text={text}>
-                  <Contacts />
+                  <ListItemIcon>
+                    <Contacts />
+                    {store.mode === "admin" ? <LockOpen /> : <Lock />}
+                  </ListItemIcon>
                 </LinkItem>
               )}
             </ListItemIcon>

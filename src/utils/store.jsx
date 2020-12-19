@@ -1,7 +1,7 @@
 import { action, observable } from "mobx";
 
 const store = observable({
-  mode: "CTO",
+  mode: "user",
   setMode: action((val) => (store.mode = val)),
   // modal version
   open: false,

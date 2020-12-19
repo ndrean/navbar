@@ -23,9 +23,8 @@ configure({
 // -< Mobx debug config
 
 const anchor = document.getElementById("root");
-
 const context = {
-  mode: "admin", //process.env.REACT_APP_MODE= "admin" in "routes.js"
+  mode: "admin",
   store,
 };
 

@@ -117,7 +117,7 @@ const Contacts = observer(({ store }) => {
       </div>
       <div className={classes.root}>
         {store.users &&
-          store.users.map((user, idx) => (
+          store.users.map((user) => (
             <List key={user.email} spacing={2} className={classes.paper}>
               <ListItemIcon xs={2} className={classes.listItem}>
                 <Avatar alt={user.last_name} src={user.avatar} loading="lazy" />
