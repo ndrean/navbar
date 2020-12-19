@@ -32,7 +32,7 @@ and run `yarn deploy`.
 2. ~~dynamic badges in navbar on #contacts & #pages-views~~
 3. ~~Mobile format of navbar & drawer~~
 4. ~~navigation with drawer~~
-5. ~~Mode admin / user for protected routes (using `localStorage`)
+5. ~~Mode admin / user for protected routes (using `localStorage`)~~
 6. Navigation with Universal Router:
    6.1 ~~nested dynamic route `/contacts/:id`~~
    6.2 ~~redirection on protected route `addcontact`~~
