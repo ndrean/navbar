@@ -102,7 +102,7 @@ const SignInModal = observer(({ store }) => {
               fullWidth
               name="email"
               type="email"
-              autoComplete="email"
+              autoComplete="current-email"
               //  autoFocus
               required
               variant="outlined"

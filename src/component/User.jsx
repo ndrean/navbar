@@ -49,7 +49,7 @@ const defaultBoxprops = {
   margin: "10px",
 };
 
-const User = observer(({ store, email, mode }) => {
+const User = observer(({ store, email, mode, children }) => {
   const classes = useStyles();
   const user = store.getUserByEmail(email);
   let { first_name, last_name, avatar } = user;

@@ -1,27 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { action } from "mobx";
-import { observer } from "mobx-react-lite";
 import { Switch, FormControlLabel } from "@material-ui/core";
 import store from "../utils/store";
 
-const ModeSwitch = observer(() => {
-  const [state, setState] = React.useState({
+const ModeSwitch = () => {
+  // <- state needed for switch button
+  const [state, setState] = useState({
     checkedA: Boolean(window.localStorage.getItem("mode")),
-  });
+  }); // <- Boolean of anything not null or undefined or 0 is "true"
 
-  const handleChange = action(() => {
+  const handleChange = action(async () => {
     if (state.checkedA) {
-      store.setMode("user");
+      store.setMode("");
     } else {
       store.setMode(process.env.REACT_APP_MODE);
     }
     setState({ ...state, checkedA: !state.checkedA });
-    store.mode === "admin"
-      ? window.localStorage.setItem("mode", "admin")
-      : window.localStorage.setItem("mode", "");
   });
 
-  console.log(state.checkedA, store.mode, window.localStorage.getItem("mode"));
+  useEffect(() => {
+    let mode = "";
+    state.checkedA ? (mode = "admin") : (mode = "");
+    window.localStorage.setItem("mode", mode);
+  }, [state]);
+
   return (
     <FormControlLabel
       control={
@@ -35,6 +37,6 @@ const ModeSwitch = observer(() => {
       label="Admin mode"
     />
   );
-});
+};
 
 export default ModeSwitch;

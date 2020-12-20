@@ -15,8 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home = observer(({ store, ...props }) => {
-  console.log("mode:", props.mode); // <- TESTING props
+const Home = observer(({ store }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>

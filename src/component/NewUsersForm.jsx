@@ -136,7 +136,7 @@ const NewUsersForm = ({ store }) => {
                   variant="outlined"
                   label="Email"
                   name={`users[${i}].email`}
-                  autoComplete="email"
+                  autoComplete="current-email"
                 />
                 {
                   <p className={classes.error}>
@@ -159,6 +159,7 @@ const NewUsersForm = ({ store }) => {
                   type="password"
                   id={`password[${i}]`}
                   variant="outlined"
+                  autoComplete="current-password"
                 />
                 {
                   <p className={classes.error}>
