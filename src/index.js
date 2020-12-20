@@ -24,7 +24,7 @@ configure({
 
 const anchor = document.getElementById("root");
 const context = {
-  mode: "admin",
+  mode: process.env.REACT_APP_MODE,
   store,
 };
 

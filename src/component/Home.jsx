@@ -20,7 +20,7 @@ const Home = observer(({ store }) => {
   return (
     <div className={classes.root}>
       <Suspense>
-        <LazyMode />
+        <LazyMode store={store} />
       </Suspense>
       <br />
       <Container maxWidth="sm" className={classes.root}>
