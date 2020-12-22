@@ -196,7 +196,7 @@ const Navbar = observer(({ store, ...props }) => {
   }
   function handleMenuClose(e) {
     setAnchorEl(null);
-    setState({ ...state, left: false });
+    setState((prev) => ({ ...prev, left: false }));
     e.preventDefault();
     history.push({ pathname: e.currentTarget.pathname });
   }

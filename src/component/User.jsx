@@ -50,6 +50,7 @@ const defaultBoxprops = {
 };
 
 const User = observer(({ store, email, mode, children }) => {
+  // console.log("render: ", email);
   const classes = useStyles();
   const user = store.getUserByEmail(email);
   let { first_name, last_name, avatar } = user;
@@ -91,4 +92,4 @@ const User = observer(({ store, email, mode, children }) => {
   );
 });
 
-export default User;
+export default React.memo(User);

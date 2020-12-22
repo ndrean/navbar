@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { action as mobxAction } from "mobx";
 import fetchUsers from "../utils/fetchUsers";
 
@@ -84,12 +84,13 @@ export const routes = [
           {
             path: "",
             async action({ store }) {
-              fetchUsers().then(mobxAction((res) => store.addUsers(res)));
-              return (
-                <Suspense fallback={spin()}>
-                  <LazyContacts store={store} />;
-                </Suspense>
-              );
+              return fetchUsers()
+                .then(mobxAction((res) => store.addUsers(res)))
+                .then(() => (
+                  <Suspense fallback={spin()}>
+                    <LazyContacts store={store} />;
+                  </Suspense>
+                ));
             },
           },
           {

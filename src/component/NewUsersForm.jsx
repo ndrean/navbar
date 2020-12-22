@@ -86,6 +86,7 @@ const NewUsersForm = ({ store }) => {
         mode: "cors",
         body: JSON.stringify(userData), // normaly, just pass "fData" AND no headers
         // !!!!!!!! no header when formdata !!!!!!!
+
         headers: {
           ...{
             "Content-type": "application/json",

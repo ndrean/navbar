@@ -22,7 +22,7 @@ const ModeSwitch = ({ store }) => {
     } else {
       store.setMode(process.env.REACT_APP_MODE);
     }
-    setState({ ...state, checkedA: !state.checkedA });
+    setState((prev) => ({ ...prev, checkedA: !state.checkedA }));
   });
 
   // <- localStorage update only in useEffect

@@ -1,5 +1,5 @@
 import { render } from "react-dom";
-// import React from "react";
+
 import UniversalRouter from "universal-router";
 // or cdn <=> window.UniversalRouter: to test
 
@@ -10,7 +10,6 @@ import store from "./utils/store";
 import { configure } from "mobx";
 
 import Error from "./component/Error";
-// import { RedeemRounded } from "@material-ui/icons";
 
 // <-  Mobx debug config
 configure({

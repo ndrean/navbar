@@ -66,26 +66,8 @@ const defaultBoxprops = {
   margin: "10px",
 };
 
-/*
-const ActionAlerts = ({ token }) => {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  return (
-    <div className={classes.root}>
-      <Collapse in={open}>
-        <Alert
-          onClose={() => {
-            setOpen(false);
-          }}
-        >
-          New user created! The token is {token}
-        </Alert>
-      </Collapse>
-    </div>
-  );
-};
-*/
 const Contacts = observer(({ store }) => {
+  // console.log("__contacts__");
   const classes = useStyles();
 
   useEffect(() => {

@@ -59,11 +59,10 @@ const store = observable({
     if (store.users.length > 0) return store.users[idx].email;
   },
   getUserByEmail: function (email) {
-    let result;
-    store.users.forEach((user) => {
-      if (user.email === email) result = user;
+    return store.users.find((user) => {
+      if (user.email === email) return user;
+      return null;
     });
-    return result;
   },
   //
   current: {},
