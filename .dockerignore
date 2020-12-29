@@ -2,4 +2,4 @@
 /build
 .git
 *.md
-.gitignore
+.git*
